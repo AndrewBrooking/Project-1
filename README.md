@@ -1,1 +1,10 @@
-# Full-Stack Development - Project 1
+# Get Out
+A date/event planning application to aggregate nearby options for activities.
+
+# APIs Used:
+Songkick (https://www.songkick.com/developer/)
+Fiz Places (https://rapidapi.com/Fizplaces/api/fiz-places)
+Hoppit (https://rapidapi.com/hoppitapi/api/hoppit-restaurant-guide)
+Trail (https://rapidapi.com/trailapi/api/trailapi)
+
+# Libraries Used:
