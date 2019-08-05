@@ -1,0 +1,15 @@
+nav {
+    height: 5rem;
+}
+
+.nav-wrapper {
+    padding-top: 1rem;
+}
+
+input {
+    padding-left: 1rem;
+}
+
+.datepicker-row {
+    color: black !important;
+}

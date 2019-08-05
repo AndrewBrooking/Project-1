@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Project Title</title>
+    <title>Get Out</title>
 
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -21,28 +23,127 @@
 
 <body>
 
-    <!-- TODO: Content -->
+    <!-- Nav Area -->
+    <nav class="teal">
+        <div class="nav-wrapper container" style="width: 75%">
+            <a href="#" class="brand-logo">Get Out</a>
+
+            <ul class="right hide-on-med-and-down">
+                <!-- Zip Code Input -->
+                <li class="input-field" style="padding-right: 2rem;">
+                    <input type="number" class="white-text" id="zip-input" data-length="5" required>
+                    <label for="zip-input" class="white-text">Zipcode</label>
+                </li>
+
+                <!-- Date Input -->
+                <li class="input-field" style="padding-right: 1rem;">
+                    <input type="text" class="datepicker white-text" id="date-input" required>
+                    <label for="date-input" class="white-text">Date</label>
+                </li>
+
+                <!-- Filters -->
+                <li>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modal-filters">
+                        <i class="material-icons">filter_list</i>
+                    </a>
+                </li>
+
+                <!-- Search Button -->
+                <li>
+                    <a class="btn waves-effect waves-light" id="search-btn">
+                        <i class="material-icons left">search</i> Search
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Filter Modal -->
+    <div id="modal-filters" class="modal">
+        <div class="modal-content">
+            <h4>Filter Results</h4>
+            <div class="row">
+
+                <!-- Range Selection -->
+                <div class="input-field col s3">
+                    <select id="range-filter">
+                        <option value="50" selected>50</option>
+                        <option value="25">25</option>
+                        <option value="15">15</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label>Range (mi.)</label>
+                </div>
+
+                <!-- Checkboxes -->
+                <form class="container right">
+
+                    <!-- Row 1 -->
+                    <div class="row">
+
+                        <!-- Day Checkbox -->
+                        <p class="col s3 right">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="day-filter" checked="checked">
+                                <span>Day</span>
+                            </label>
+                        </p>
+
+                        <!-- Music Checkbox -->
+                        <p class="col s3 right">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="music-filter" checked="checked">
+                                <span>Music</span>
+                            </label>
+                        </p>
+
+                        <!-- Food Checkbox -->
+                        <p class="col s3 right">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="food-filter" checked="checked">
+                                <span>Food</span>
+                            </label>
+                        </p>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="row">
+
+                        <!-- Night Checkbox -->
+                        <p class="col s3 right">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="night-filter" checked="checked">
+                                <span>Night</span>
+                            </label>
+                        </p>
+
+                        <!-- Outdoor Checkbox -->
+                        <p class="col s3 right">
+                            <label>
+                                <input type="checkbox" class="filled-in" id="outdoor-filter" checked="checked">
+                                <span>Outdoor</span>
+                            </label>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Reset and Done buttons -->
+        <div class="modal-footer">
+            <a href="#!" class="waves-effect btn" id="reset-btn">Reset</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal-close-btn">Done</a>
+        </div>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
     </script>
 
-    <!-- Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
-    <!-- Firebase Core -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
-
-    <!-- Firebase Database -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- App JS -->
     <script src="./assets/scripts/app.js"></script>
