@@ -1,6 +1,7 @@
 // Start logic after page has loaded
 $(document).ready(function () {
 
+    // Materialize initializations
     init();
 });
 

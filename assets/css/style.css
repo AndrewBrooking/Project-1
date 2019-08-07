@@ -3,6 +3,7 @@ nav {
 }
 
 .nav-wrapper {
+    width: 75%;
     padding-top: 1rem;
 }
 
