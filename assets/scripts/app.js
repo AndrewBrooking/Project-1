@@ -30,10 +30,14 @@ function init() {
     $('select').formSelect();
 }
 
-function search() {
+function search(event) {
+    event.preventDefault();
+
     // TODO
 }
 
-function generateItinerary() {
+function generateItinerary(event) {
+    event.preventDefault();
+
     // TODO
 }
