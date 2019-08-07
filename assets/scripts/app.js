@@ -3,6 +3,12 @@ $(document).ready(function () {
 
     // Materialize initializations
     init();
+
+    // Handle search button click events
+    $(document).on("click", "#search-btn", search);
+
+    // Handle go button click events
+    $(document).on("click", "#go-btn", generateItinerary);
 });
 
 function init() {
@@ -22,4 +28,12 @@ function init() {
 
     // Intialize select fields
     $('select').formSelect();
+}
+
+function search() {
+    // TODO
+}
+
+function generateItinerary() {
+    // TODO
 }
