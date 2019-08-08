@@ -9,6 +9,15 @@ input {
     padding-left: 1rem;
 }
 
+ul.dropdown-content.select-dropdown li span {
+    color: black !important;
+}
+
+input[type="checkbox"].filled-in:checked + span:not(.lever):after {
+    border-color: #ff5252 !important;
+    background-color: #ff5252 !important;
+}
+
 /*
 *   Class styles
 */
@@ -21,25 +30,16 @@ input {
     color: black !important;
 }
 
-.input-field input[type=text]:focus,
-.input-field input[type=number]:focus {
+.input-field input[type="text"]:focus,
+.input-field input[type="number"]:focus {
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
 
-.input-field input[type=text].invalid,
-.input-field input[type=number].invalid {
+.input-field input[type="text"].invalid,
+.input-field input[type="number"].invalid {
     border-bottom: 1px solid #F44336 !important;
     box-shadow: 0 1px 0 0 #F44336 !important;
-}
-
-ul.dropdown-content.select-dropdown li span {
-    color: black !important;
-}
-
-[type="checkbox"].filled-in:checked + span:not(.lever):after {
-    border-color: #ff5252 !important;
-    background-color: #ff5252 !important;
 }
 
 .prism-bg {
