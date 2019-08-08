@@ -14,14 +14,15 @@ const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_a
 // Start logic after page has loaded
 $(document).ready(function () {
 
+    // Materialize initializations
     init();
 
 
-    // gets distance from user.  This should probably end up in an onclick function but is here because I needed it to happen after page load/init but before my function call
-    distanceInput = $("#range-filter").formSelect('getSelectedValues')[0];
-    //creates a radius in meters for the gPlacesSearch function call
-    var radiusInMeters = radiusConverter(distanceInput);
-    gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
+    // Handle search button click events
+    $(document).on("click", "#search-btn", search);
+
+    // Handle go button click events
+    $(document).on("click", "#go-btn", generateItinerary);
 });
 
 function init() {
@@ -42,12 +43,12 @@ function init() {
     // Intialize select fields
     $('select').formSelect();
 }
-// ##################  API Info #############################
+// #################################   API Info ##########################################
 //yelp
 const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
 const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
 
-// ######################  Google Places API Functions  ####################
+// ################################# Google Places API Functions  #############################
 
 // function to convert user input from miles to meters
 function radiusConverter(distanceMi) {
@@ -68,9 +69,10 @@ function gPlacesSearch(lat, lng, types, radius) {
         radius: radius,
         type: types,
     };
-//creates a google places service object to search
+
+    //creates a google places service object to search
     var service = new google.maps.places.PlacesService(map);
-//uses google places nearby search method to generate an API call and return a customized array of results
+    //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
         console.log(results)
         console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
@@ -99,4 +101,26 @@ function gPlacesSearch(lat, lng, types, radius) {
         console.log(gSearchResultsARR);
         return gSearchResultsARR;
     });
+};
+
+//##################################### APP Functions #################################################
+
+function search(event) {
+    event.preventDefault();
+
+    
+    // gets distance from user.  should probably be incorporated into another function
+    distanceInput = $("#range-filter").formSelect('getSelectedValues')[0];
+    //creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
+    var radiusInMeters = radiusConverter(distanceInput);
+    gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
+
+
+    // TODO
+}
+
+function generateItinerary(event) {
+    event.preventDefault();
+
+    // TODO
 }
