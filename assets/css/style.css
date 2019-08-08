@@ -1,0 +1,28 @@
+nav {
+    height: 5rem;
+}
+
+.nav-wrapper {
+    padding-top: 1rem;
+}
+
+input {
+    padding-left: 1rem;
+}
+
+.datepicker-row {
+    color: black !important;
+}
+
+/*--------Search result area-----*/
+.search-result-text{
+    padding: 1.5rem;
+}
+
+
+.info{
+
+  padding: 5px;
+  margin: 3px;
+}
+
