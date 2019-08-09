@@ -1,11 +1,9 @@
-function queryAPI(url) {
-    let results = null;
-
-    $.ajax({
+async function queryAPI(url) {
+    let results = await $.ajax({
         url: url,
         method: 'GET'
     }).then(function (data) {
-        results = data;
+        return data;
     });
 
     return results;
