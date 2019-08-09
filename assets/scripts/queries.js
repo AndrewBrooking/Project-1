@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function queryAPI(url) {
     let results;
 
@@ -8,6 +9,14 @@ function queryAPI(url) {
         metroID = data.resultsPage.results.location[0].metroArea.id;
         results = data;
 
+=======
+async function queryAPI(url) {
+    let results = await $.ajax({
+        url: url,
+        method: 'GET'
+    }).then(function (data) {
+        return data;
+>>>>>>> 92ed1cf612cbcc8676b5f5da5d9f8af88dfa92da
     });
 
 }
