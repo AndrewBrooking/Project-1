@@ -43,12 +43,10 @@ function init() {
     // Intialize select fields
     $('select').formSelect();
 }
-// #################################   API Info ##########################################
-//yelp
-const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
-const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
 
 // ################################# Google Places API Functions  #############################
+//TODO
+    // convert zipcode to latlng
 
 // function to convert user input from miles to meters
 function radiusConverter(distanceMi) {
@@ -74,8 +72,7 @@ function gPlacesSearch(lat, lng, types, radius) {
     var service = new google.maps.places.PlacesService(map);
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
-        console.log(results)
-        console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
+
         var name;
         var location;
         var type;
