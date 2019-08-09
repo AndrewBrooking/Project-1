@@ -40,8 +40,22 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
     color: black !important;
 }
 
-.input-field input[type="text"]:focus,
-.input-field input[type="number"]:focus {
+/*--------Search result area-----*/
+.card-content{
+    color: black;
+}
+.search-result-text{
+    padding: 1.5rem;
+}
+
+.info{
+
+  padding: 5px;
+  margin: 3px;
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=number]:focus {
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
