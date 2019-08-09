@@ -31,6 +31,8 @@ $(document).ready(function () {
     // Handle checkbox click events
     $(document).on("click", "input[type='checkbox']", checkboxEvent);
 
+    // Handle range filter change events
+    $(document).on("change", "#range-filter", rangeEvent);
 
     // Handle search button click events
     $(document).on("click", "#search-btn", searchEvent);
@@ -158,6 +160,13 @@ function checkboxEvent(event) {
 }
 
 /**
+ * Sets the range filter to the selected value
+ */
+function rangeEvent(event) {
+    filterRange = this.value;
+}
+
+/**
  * Performs the querying actions using filter settings
  */
 function searchEvent(event) {
@@ -166,11 +175,9 @@ function searchEvent(event) {
     // Obtain zip code and date values
     let zip = $("#zip-input").val();
     let date = $("#date-input").val();
-    
-    // gets distance from user.  should probably be incorporated into another function
-    distanceInput = $("#range-filter").formSelect('getSelectedValues')[0];
-    //creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
-    var radiusInMeters = radiusConverter(distanceInput);
+
+    // creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
+    var radiusInMeters = radiusConverter(filterRange);
     gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
 
 
