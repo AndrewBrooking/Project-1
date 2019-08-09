@@ -3,7 +3,7 @@
 // variable for holding user selected search radius
 var distanceInput;
 
-var searchArea = [29.7604,-95.3698]; //needs to be a latlng generated from user inputted zipcode
+var searchArea = [29.7604, -95.3698]; //needs to be a latlng generated from user inputted zipcode
 
 // Create filter variables and initalize them with default values
 let filterRange = 50;
@@ -74,16 +74,13 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
-        console.log(results)
-        console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
-
         var name;
         var location;
         var type;
         var icon;
         var gSearchResultsARR = [];
-        
-        for (var i = 0; i<results.length; i++) {
+
+        for (var i = 0; i < results.length; i++) {
             currentResult = results[i];
 
             name = currentResult.name;
@@ -101,7 +98,6 @@ function gPlacesSearch(lat, lng, types, radius) {
             gSearchResultsARR.push(gSearchResultOBJ);
         }
 
-        console.log(gSearchResultsARR);
         return gSearchResultsARR;
     });
 };
@@ -113,7 +109,7 @@ function gPlacesSearch(lat, lng, types, radius) {
  */
 function initMaterialize() {
     // Initialize input character counting
-    $('input#zip-input').characterCounter();
+    $('input#zip-input, input#zip-input-mobile').characterCounter();
 
     // Initialize date pickers
     $('.datepicker').datepicker({
@@ -127,6 +123,9 @@ function initMaterialize() {
 
     // Intialize select fields
     $('select').formSelect();
+
+    // Initialize sidenav components
+    $('.sidenav').sidenav();
 }
 
 /**
@@ -173,13 +172,14 @@ function searchEvent(event) {
     event.preventDefault();
 
     // Obtain zip code and date values
-    let zip = $("#zip-input").val();
-    let date = $("#date-input").val();
+
+    let zip = $("#zip-input").val() || $("#zip-input-mobile").val();
+    let date = M.Datepicker.getInstance($("#date-input")).toString() ||
+        M.Datepicker.getInstance($("#date-input-mobile")).toString();
 
     // creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
     var radiusInMeters = radiusConverter(filterRange);
     gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
-
 
     // TODO
 }

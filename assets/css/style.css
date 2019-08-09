@@ -13,7 +13,7 @@ ul.dropdown-content.select-dropdown li span {
     color: black !important;
 }
 
-input[type="checkbox"].filled-in:checked + span:not(.lever):after {
+input[type="checkbox"].filled-in:checked+span:not(.lever):after {
     border-color: #ff5252 !important;
     background-color: #ff5252 !important;
 }
@@ -24,6 +24,16 @@ input[type="checkbox"].filled-in:checked + span:not(.lever):after {
 .nav-wrapper {
     width: 75%;
     padding-top: 2.5rem;
+    position: relative;
+}
+
+.brand-logo {
+    position: absolute;
+    bottom: -1.5rem;
+}
+
+.logo {
+    max-height: 7rem;
 }
 
 .datepicker-row {
@@ -44,4 +54,9 @@ input[type="checkbox"].filled-in:checked + span:not(.lever):after {
 
 .prism-bg {
     background-image: url('../images/prism.png');
+}
+
+.side-li {
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
