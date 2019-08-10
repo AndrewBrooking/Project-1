@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- Page title -->
     <title>Get Out</title>
+
+    <!-- Page favicon -->
+    <link rel="icon" href="./assets/images/icon.png">
 
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
 
     <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -28,7 +32,12 @@
         <div class="nav-wrapper container" style="width: 72%">
     <nav class="prism-bg">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">Get Out</a>
+            <a href="#" class="brand-logo">
+                <img src="./assets/images/logo.png" alt="Get Out" class="logo">
+            </a>
+
+            <!--  -->
+            <a href="#" data-target="collapsed" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
             <ul class="right hide-on-med-and-down">
                 <!-- Zip Code Input -->
@@ -60,8 +69,97 @@
         </div>
     </nav>
 
+    <!-- Sidenav -->
+    <ul class="sidenav" id="collapsed">
+
+        <li class="side-li">
+            <h4>Search</h4>
+        </li>
+
+        <li style="padding-left: 1rem; padding-right: 1rem;">
+            <hr>
+        </li>
+
+        <!-- Zip Code Input -->
+        <li class="input-field side-li">
+            <input type="number" class="black-text" id="zip-input-mobile" data-length="5" required>
+            <label for="zip-input" class="black-text">Zipcode</label>
+        </li>
+
+        <!-- Date Input -->
+        <li class="input-field side-li" style="width: 90%; padding-right: 2rem;">
+            <input type="text" class="datepicker black-text" id="date-input-mobile" required>
+            <label for="date-input" class="black-text">Date</label>
+        </li>
+
+        <li style="padding-left: 1rem; padding-right: 1rem;">
+            <hr>
+        </li>
+
+        <!-- Range Selection -->
+        <li class="side-li">
+            <div class="input-field">
+                <select id="range-filter">
+                    <option value="50" selected>50</option>
+                    <option value="25">25</option>
+                    <option value="15">15</option>
+                    <option value="10">10</option>
+                    <option value="5">5</option>
+                </select>
+                <label>Range (mi.)</label>
+            </div>
+        </li>
+
+        <!-- Day Checkbox -->
+        <li class="side-li">
+            <label>
+                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
+                <span>Day</span>
+            </label>
+        </li>
+
+        <!-- Night Checkbox -->
+        <li class="side-li">
+            <label>
+                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
+                <span>Night</span>
+            </label>
+        </li>
+
+        <!-- Food Checkbox -->
+        <li class="side-li">
+            <label>
+                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
+                <span>Food</span>
+            </label>
+        </li>
+
+        <!-- Music Checkbox -->
+        <li class="side-li">
+            <label>
+                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
+                <span>Music</span>
+            </label>
+        </li>
+
+        <!-- Outdoor Checkbox -->
+        <li class="side-li">
+            <label>
+                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
+                <span>Outdoor</span>
+            </label>
+        </li>
+
+        <!-- Search Button -->
+        <li class="side-li">
+            <a class="btn waves-effect waves-light red accent-2 center-align" id="search-btn" style="width: 75%">
+                <i class="material-icons left">search</i> Search
+            </a>
+        </li>
+    </ul>
+
     <!-- Filter Modal -->
-    <div id="modal-filters" class="modal">
+    <div id="modal-filters" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4>Filter Results</h4>
             <div class="row">
@@ -87,7 +185,7 @@
                         <!-- Day Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked="checked">
+                                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
                                 <span>Day</span>
                             </label>
                         </p>
@@ -95,7 +193,7 @@
                         <!-- Music Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked="checked">
+                                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
                                 <span>Music</span>
                             </label>
                         </p>
@@ -103,7 +201,7 @@
                         <!-- Food Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked="checked">
+                                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
                                 <span>Food</span>
                             </label>
                         </p>
@@ -115,7 +213,7 @@
                         <!-- Night Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked="checked">
+                                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
                                 <span>Night</span>
                             </label>
                         </p>
@@ -123,7 +221,7 @@
                         <!-- Outdoor Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked="checked">
+                                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
                                 <span>Outdoor</span>
                             </label>
                         </p>
@@ -139,6 +237,10 @@
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal-close-btn">Done</a>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 50adee4372fb36a489ef66a5c1950ce59e1542c2
        <!-- Result Area Card -->
        <div class="container">
             <div class="col s12 m7 " id="result-container">
@@ -149,9 +251,20 @@
            </div>
 
 
+<<<<<<< HEAD
     <div id="map"></div>
     <!-- Google Maps Places Library -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o&libraries=places"></script>
+=======
+
+    <div id="map"></div>
+          
+    <!-- Google Maps Places Library -->
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o&libraries=places">
+    </script>
+
+>>>>>>> 50adee4372fb36a489ef66a5c1950ce59e1542c2
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">

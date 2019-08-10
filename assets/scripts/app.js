@@ -116,7 +116,7 @@ console.log(results[i].name)
          
             
             gSearchResultsARR.push(gSearchResultOBJ);
-            // Call cardTemplate function
+            
          // GENERATE CARD TEMPLATE FUNCTION
 function cardTemplate(){
     
