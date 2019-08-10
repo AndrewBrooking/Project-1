@@ -3,7 +3,8 @@
 // ###################### Global Variables ##########################################
 //Array holding search results from all APIs 
 var searchResults = [];
-
+//Array of google search types to use for search
+var typesArr = [];
 // variable for holding user selected search radius
 var distanceInput;
 
@@ -19,10 +20,31 @@ let filterOutdoor = true;
 
 // arrays of gplaces types organized by user search options
 const nightTypes = ["bar", "bakery", "night_club", "stadium", "bowling_alley", "art_gallery", "movie_theater"];
-const dayTypes = ["amusement_park", "aquarium", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum", "stadium"];
+const dayTypes = ["amusement_park", "aquarium", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum"];
 const outdoorTypes = ["amusement_park", "campground", "park"];
-const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
+const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park",];
+const foodType = ["restaurant"];
 
+
+//############################## Search Logic #############################################
+function setTypesforGS() {
+    let checkArr = [{checked: filterDay, filter: dayTypes }, { checked: filterNight, filter: nightTypes }, { checked: filterFood, filter: foodType }, { checked: filterOutdoor, filter: outdoorTypes }];
+
+    if (filterDay && filterNight && filterFood && filterMusic && filterDay) {
+        typeArr = allTypes;
+    }
+    else {
+        typesArr = [];
+        for (var i = 0; i < checkArr.length; i++) {
+            if (checkArr[i].checked) {
+                
+                 typesArr = [...typesArr, ...checkArr[i].filter];
+            }
+        }
+
+    }
+    console.log(typesArr);
+}
 
 //############################## App Logic #############################################
 
@@ -100,6 +122,7 @@ function checkboxEvent(event) {
             filterOutdoor = status;
             break;
     }
+    setTypesforGS();
 }
 
 /**
