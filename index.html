@@ -28,8 +28,6 @@
 <body>
 
     <!-- Nav Area -->
-    <nav class="teal">
-        <div class="nav-wrapper container" style="width: 72%">
     <nav class="prism-bg">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo">
@@ -42,13 +40,30 @@
             <ul class="right hide-on-med-and-down">
                 <!-- Zip Code Input -->
                 <li class="input-field" style="padding-right: 2rem;">
-                    <input type="text" class="white-text" id="zip-input" data-length="5" pattern="[0-9]{5}" title="Please enter a 5 digit zipcode" required>
+                    <input type="text" class="white-text" id="zip-input" data-length="5" pattern="[0-9]{5}"
+                        title="Please enter a 5 digit zipcode" required="">
                     <label for="zip-input" class="white-text">Zipcode</label>
-                </li>
+                    <span class="character-counter" style="float: right; font-size: 12px;">0/5</span></li>
 
                 <!-- Date Input -->
                 <li class="input-field" style="padding-right: 1rem;">
-                    <input type="text" class="datepicker white-text" id="date-input" required>
+                    <div class="modal datepicker-modal" id="modal-9bee6836-ac0a-a9db-6d00-36ce151b23b1" tabindex="0">
+                        <div class="modal-content datepicker-container">
+                            <div class="datepicker-date-display"><span class="year-text"></span><span
+                                    class="date-text"></span></div>
+                            <div class="datepicker-calendar-container">
+                                <div class="datepicker-calendar"></div>
+                                <div class="datepicker-footer"><button class="btn-flat datepicker-clear waves-effect"
+                                        style="visibility: hidden;" type="button"></button>
+                                    <div class="confirmation-btns"><button
+                                            class="btn-flat datepicker-cancel waves-effect"
+                                            type="button">Cancel</button><button
+                                            class="btn-flat datepicker-done waves-effect" type="button">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><input type="text" class="datepicker white-text" id="date-input" required="">
                     <label for="date-input" class="white-text">Date</label>
                 </li>
 
@@ -82,13 +97,27 @@
 
         <!-- Zip Code Input -->
         <li class="input-field side-li">
-            <input type="number" class="black-text" id="zip-input-mobile" data-length="5" required>
+            <input type="number" class="black-text" id="zip-input-mobile" data-length="5" required="">
             <label for="zip-input" class="black-text">Zipcode</label>
-        </li>
+            <span class="character-counter" style="float: right; font-size: 12px;"></span></li>
 
         <!-- Date Input -->
         <li class="input-field side-li" style="width: 90%; padding-right: 2rem;">
-            <input type="text" class="datepicker black-text" id="date-input-mobile" required>
+            <div class="modal datepicker-modal" id="modal-6f3ed049-d3ef-43db-d177-c5c970ca1272" tabindex="0">
+                <div class="modal-content datepicker-container">
+                    <div class="datepicker-date-display"><span class="year-text"></span><span class="date-text"></span>
+                    </div>
+                    <div class="datepicker-calendar-container">
+                        <div class="datepicker-calendar"></div>
+                        <div class="datepicker-footer"><button class="btn-flat datepicker-clear waves-effect"
+                                style="visibility: hidden;" type="button"></button>
+                            <div class="confirmation-btns"><button class="btn-flat datepicker-cancel waves-effect"
+                                    type="button">Cancel</button><button class="btn-flat datepicker-done waves-effect"
+                                    type="button">Ok</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div><input type="text" class="datepicker black-text" id="date-input-mobile" required="">
             <label for="date-input" class="black-text">Date</label>
         </li>
 
@@ -99,13 +128,32 @@
         <!-- Range Selection -->
         <li class="side-li">
             <div class="input-field">
-                <select id="range-filter">
-                    <option value="50" selected>50</option>
-                    <option value="25">25</option>
-                    <option value="15">15</option>
-                    <option value="10">10</option>
-                    <option value="5">5</option>
-                </select>
+                <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text" readonly="true"
+                        data-target="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe27">
+                    <ul id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe27"
+                        class="dropdown-content select-dropdown" tabindex="0">
+                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe270" tabindex="0" class="selected">
+                            <span>50</span></li>
+                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe271" tabindex="0"><span>25</span>
+                        </li>
+                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe272" tabindex="0"><span>15</span>
+                        </li>
+                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe273" tabindex="0"><span>10</span>
+                        </li>
+                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe274" tabindex="0"><span>5</span>
+                        </li>
+                    </ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"></path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                    </svg><select id="range-filter" tabindex="-1">
+                        <option value="50" selected="">50</option>
+                        <option value="25">25</option>
+                        <option value="15">15</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
                 <label>Range (mi.)</label>
             </div>
         </li>
@@ -113,7 +161,7 @@
         <!-- Day Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
+                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked="">
                 <span>Day</span>
             </label>
         </li>
@@ -121,7 +169,7 @@
         <!-- Night Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
+                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked="">
                 <span>Night</span>
             </label>
         </li>
@@ -129,7 +177,7 @@
         <!-- Food Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
+                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked="">
                 <span>Food</span>
             </label>
         </li>
@@ -137,7 +185,7 @@
         <!-- Music Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
+                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked="">
                 <span>Music</span>
             </label>
         </li>
@@ -145,7 +193,7 @@
         <!-- Outdoor Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
+                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked="">
                 <span>Outdoor</span>
             </label>
         </li>
@@ -159,20 +207,39 @@
     </ul>
 
     <!-- Filter Modal -->
-    <div id="modal-filters" class="modal modal-fixed-footer">
+    <div id="modal-filters" class="modal modal-fixed-footer" tabindex="0">
         <div class="modal-content">
             <h4>Filter Results</h4>
             <div class="row">
 
                 <!-- Range Selection -->
                 <div class="input-field col s3">
-                    <select id="range-filter">
-                        <option value="20" selected>20</option>
-                        <option value="22">22</option>
-                        <option value="12">12</option>
-                        <option value="10">10</option>
-                        <option value="2">2</option>
-                    </select>
+                    <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text"
+                            readonly="true" data-target="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a">
+                        <ul id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a"
+                            class="dropdown-content select-dropdown" tabindex="0">
+                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a0" tabindex="0" class="selected">
+                                <span>50</span></li>
+                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a1" tabindex="0">
+                                <span>25</span></li>
+                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a2" tabindex="0">
+                                <span>15</span></li>
+                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a3" tabindex="0">
+                                <span>10</span></li>
+                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a4" tabindex="0">
+                                <span>5</span></li>
+                        </ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10l5 5 5-5z"></path>
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                        </svg><select id="range-filter" tabindex="-1">
+                            <option value="50" selected="">50</option>
+                            <option value="25">25</option>
+                            <option value="15">15</option>
+                            <option value="10">10</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
                     <label>Range (mi.)</label>
                 </div>
 
@@ -185,7 +252,7 @@
                         <!-- Day Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
+                                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked="">
                                 <span>Day</span>
                             </label>
                         </p>
@@ -193,7 +260,7 @@
                         <!-- Music Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
+                                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked="">
                                 <span>Music</span>
                             </label>
                         </p>
@@ -201,7 +268,7 @@
                         <!-- Food Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
+                                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked="">
                                 <span>Food</span>
                             </label>
                         </p>
@@ -213,7 +280,7 @@
                         <!-- Night Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
+                                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked="">
                                 <span>Night</span>
                             </label>
                         </p>
@@ -221,7 +288,7 @@
                         <!-- Outdoor Checkbox -->
                         <p class="col s3 right">
                             <label>
-                                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
+                                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked="">
                                 <span>Outdoor</span>
                             </label>
                         </p>
@@ -229,7 +296,6 @@
                 </form>
             </div>
         </div>
-     
 
         <!-- Reset and Done buttons -->
         <div class="modal-footer">
@@ -238,83 +304,96 @@
         </div>
     </div>
 
-       <!-- Result Area Card -->
-       <div class="container" id="result-container">
-            <div class="col s12 m7">
-                    <div  class="col s12 search-result-text">Search Result</div>
-                    <div class="card horizontal">
-                      <div class="card-image">
-                      </div>
-                      <div class="card-stacked">
-                        <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">Hotels<i class="material-icons right">more_vert</i></span>
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+    <!-- Result Area Card -->
+    <div class="container" id="result-container">
+        <div class="col s12 m7">
+            <div class="col s12 search-result-text">Search Result</div>
+            <div class="card horizontal">
+                <div class="card-image">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Hotels<i
+                                class="material-icons right">more_vert</i></span>
+                        <div class="row">
+                            <!-- Map Div-->
+                            <div class="col s12 m4 l4 info-boxes center-align">
+                                <img class="materialboxed" width="150"
+                                    src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                            </div>
+                            <!--Place Info-->
+                            <div class="col s12 m4 r l4 info-boxes">
                                 <div class="row">
-                                    <!-- Map Div-->
-                                    <div class="col s12 m4 l4 info-boxes center-align">
-                                            <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                    <div class="col s12 info">
+                                        <h5>Omni Houston Hotel</h5>
                                     </div>
-                                    <!--Place Info-->
-                                    <div class="col s12 m4 r l4 info-boxes">
-                                        <div class="row">
-                                            <div class="col s12 info"><h5>Omni Houston Hotel</h5></div>
-                                            <div class="col s12 info">Houston, 5.6 miles to City center</div>
-                                            <div class="col s12 info">5 rating</div>
-                                         </div>
-                                    </div>
-                                    <!-- Right side links and opening and closing time-->
-                                    <div class="col s12 m4  center-align l4 info-boxes">
-                                            <div class="row">
-                                                    <div class="col s12 info"><p>Open | Close</p></div>
-                                                    <div class="col s12 info">Visit site</div>
-                                                    <div class="col s12 info"></div>
-                                                 </div>
-                                       </div>
-                                 </div>
-                         </div>
-                         <!-- Card Button to Show More Info -->
-                        <div class="card-action">
-                          <button class=" btn activator">Details</button>
-                        </div>
-                      </div>
-                      <!-- Card Revel  -->
-                      <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Images<i class="material-icons right">close</i></span>
-                            <div class="row">
-                                <div class="col s4 m3 l3">
-                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
-                                </div>
-                                <div class="col s4 m3 l3">
-                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
-                                </div>
-                                <div class="col s4 m3 l3">
-                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
-                                </div>
-                                <div class="col s4 m3 l3">
-                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
-                                </div>
-                                <div class="col s4 m3 l3">
-                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                    <div class="col s12 info">Houston, 5.6 miles to City center</div>
+                                    <div class="col s12 info">5 rating</div>
                                 </div>
                             </div>
-                          </div>
+                            <!-- Right side links and opening and closing time-->
+                            <div class="col s12 m4  center-align l4 info-boxes">
+                                <div class="row">
+                                    <div class="col s12 info">
+                                        <p>Open | Close</p>
+                                    </div>
+                                    <div class="col s12 info">Visit site</div>
+                                    <div class="col s12 info"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                   
+                    <!-- Card Button to Show More Info -->
+                    <div class="card-action">
+                        <button class=" btn activator">Details</button>
+                    </div>
                 </div>
-           </div>
+                <!-- Card Revel  -->
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Images<i
+                            class="material-icons right">close</i></span>
+                    <div class="row">
+                        <div class="col s4 m3 l3">
+                            <img class="materialboxed" width="150"
+                                src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                        </div>
+                        <div class="col s4 m3 l3">
+                            <img class="materialboxed" width="150"
+                                src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                        </div>
+                        <div class="col s4 m3 l3">
+                            <img class="materialboxed" width="150"
+                                src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                        </div>
+                        <div class="col s4 m3 l3">
+                            <img class="materialboxed" width="150"
+                                src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                        </div>
+                        <div class="col s4 m3 l3">
+                            <img class="materialboxed" width="150"
+                                src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-
+        </div>
+    </div>
 
     <div id="map"></div>
-          
+
     <!-- Google Maps Places Library -->
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o&libraries=places">
-    </script>
+        </script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha226-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
-    </script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
 
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

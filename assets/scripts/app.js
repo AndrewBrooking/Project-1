@@ -100,7 +100,7 @@ function gPlacesSearch(lat, lng, types, radius) {
 
             gSearchResultsARR.push(gSearchResultOBJ);
         }
-
+        console.log(gSearchResultsARR)
         return gSearchResultsARR;
     });
 };
