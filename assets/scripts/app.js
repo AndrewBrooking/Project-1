@@ -1,6 +1,8 @@
 
 /// <reference path="../typings/globals/jquery/index.d.ts" />
 // ###################### Global Variables ##########################################
+//Array holding search results from all APIs 
+var searchResults = [];
 
 // variable for holding user selected search radius
 var distanceInput;
@@ -16,10 +18,11 @@ let filterMusic = true;
 let filterOutdoor = true;
 
 // arrays of gplaces types organized by user search options
-const nightTypes = ["bar", "bakery", "casino", "night_club", "stadium", "bowling_alley", "art_gallery", "movie_theater"];
+const nightTypes = ["bar", "bakery", "night_club", "stadium", "bowling_alley", "art_gallery", "movie_theater"];
 const dayTypes = ["amusement_park", "aquarium", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum", "stadium"];
 const outdoorTypes = ["amusement_park", "campground", "park"];
 const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
+
 
 //############################## App Logic #############################################
 
@@ -44,7 +47,13 @@ $(document).ready(function () {
 });
 
 // ################################# Google Places API Functions  #############################
-
+//function to handle types
+function setTypes() {
+    if (filterDay && filterNight && filterFood && filterMusic && filterOutdoor) {
+        types = allTypes;
+    }
+     
+}
 // function to convert user input from miles to meters
 function radiusConverter(distanceMi) {
     return distanceMi * 1609.34;
@@ -198,14 +207,10 @@ function cardTemplate(){
     });
 };
 
+//##################################### Pan API Functions #################################################
+function combineResults(){
 
-// #################################   API Info ##########################################
-
-//yelp
-const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
-const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
-
-
+}
 //##################################### APP Functions #################################################
 
 /**
