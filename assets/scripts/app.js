@@ -1,3 +1,4 @@
+/// <reference path="../typings/globals/jquery/index.d.ts" />
 // ###################### Global Variables ##########################################
 
 // variable for holding user selected search radius
@@ -41,24 +42,6 @@ $(document).ready(function () {
     $(document).on("click", "#go-btn", goEvent);
 });
 
-function init() {
-
-    // Initialize input character counting
-    $('input#zip-input').characterCounter();
-
-    // Initialize date pickers
-    $('.datepicker').datepicker({
-        autoClose: true,
-        defaultDate: Date.now(),
-        setDefaultDate: true
-    });
-
-    // Initialize modals
-    $('.modal').modal();
-
-    // Intialize select fields
-    $('select').formSelect();
-}
 // #################################   API Info ##########################################
 
 //yelp
