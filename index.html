@@ -241,17 +241,16 @@
     <main class="row">
 
         <!-- Result Area -->
-        <div class="col s12 m8 left">
-            <div class="col s12" id="result-container">
+        <div class="col s12 m10 l8 left" id="result-container">
+            <span class="search-result-text">
+                <h6>Search Result</h6>
+            </span>
 
-                <span class="search-result-text">
-                    <h6>Search Result</h6>
-                </span>
-            </div>
+            <div class="divider"></div>
         </div>
 
         <!-- Cart Area -->
-        <div class="col s12 m4 right" id="cart">
+        <div class="col s12 m6 l4 right" id="cart" style="margin-top: 1rem;">
 
             <h6>Selected Activities</h6>
 
@@ -265,7 +264,10 @@
             </ul>
 
             <!-- GO Button -->
-            <button class="btn red accent-2 waves-effect waves-light" id="go-btn">GO</button>
+            <button class="btn red accent-2 waves-effect waves-light right" id="go-btn">
+                GO
+                <i class="material-icons right">arrow_forward</i>
+            </button>
         </div>
     </main>
 

@@ -4,7 +4,7 @@ function cardTemplate(gSearchResultOBJ) {
 
 
     var template = $("<div>");
-    template.addClass("col s12 m7 black-text");
+    template.addClass("col s12 black-text");
     template.html(`
     
     <div class="card horizontal">

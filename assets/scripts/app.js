@@ -4,7 +4,6 @@
 
 // variable for holding user selected search radius
 var distanceInput;
-
 var searchArea = [29.7604, -95.3698]; //needs to be a latlng generated from user inputted zipcode
 
 // Create filter variables and initalize them with default values
@@ -20,6 +19,12 @@ const nightTypes = ["bar", "bakery", "casino", "night_club", "stadium", "bowling
 const dayTypes = ["amusement_park", "aquarium", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum", "stadium"];
 const outdoorTypes = ["amusement_park", "campground", "park"];
 const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
+
+// GPlaces search results
+let gplacesResults;
+
+// Holds all activities in the cart
+let cart = [];
 
 //############################## App Logic #############################################
 
@@ -41,6 +46,9 @@ $(document).ready(function () {
 
     // Handle go button click events
     $(document).on("click", "#go-btn", goEvent);
+
+    // Handle add to cart click events
+    $(document).on("click", ".add-basket", addCartEvent);
 });
 
 //##################################### APP Functions #################################################
@@ -120,16 +128,44 @@ function searchEvent(event) {
 
     // creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
     var radiusInMeters = radiusConverter(filterRange);
-    gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
+    gplacesResults = gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
 
     // TODO
 }
 
 /**
- * 
+ * Generates the itinerary from the selected activities
  */
 function goEvent(event) {
     event.preventDefault();
 
     // TODO
+}
+
+function addCartEvent(event) {
+    event.preventDefault();
+
+    // Obtain reference to cart
+    let cartList = $("#cart-list");
+
+    // Clear cart if empty
+    if (cart.length === 0) {
+        cartList.empty();
+    }
+
+    // Get activity that was clicked
+    let index = $(this).attr("data-index");
+    let activity = gplacesResults[index];
+
+    // Check if activity is already in cart, if not then add it to the cart array
+    if (!cart.includes(activity)) {
+        cart.push(activity);
+    }
+
+    // Add the activity to the cart
+    let text = $("<span>").text(activity.name);
+    let icon = $("<i>").addClass("material-icons red accent-2").text("clear");
+    let btn = $("<a>").addClass("secondary-content").append(icon);
+    let li = $("<li>").addClass("collection-item").append(text).append(btn);
+    cartList.append(li);
 }
