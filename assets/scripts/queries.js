@@ -1,23 +1,6 @@
-async function queryAPI(url) {
-    let results = await $.ajax({
-        url: url,
-        method: 'GET'
-    }).then(function (data) {
-        return data;
-    });
-
-}
-
-
-
-
-
 
 
 // #################################   API Info ##########################################
-//yelp
-// const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
-// const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
 //songkick
 const songkickApiKey = "&apikey=OJjdV1C71cGFN7Nj";
 //################################## Songkick API Functions ###################################
@@ -61,11 +44,11 @@ function getUpcomingMusic(url) {
       
         for (var i = 0; i < result.length; i++) {
             let currentResult = result[i];
-            name = currentResult.displayName;
-            type = currentResult.type; 
-            time = currentResult.start.date + "at: " + currentResult.start.time;
-            info = currentResult.uri;
-            venue = currentResult.venue.displayName;
+            let name = currentResult.displayName;
+            let type = currentResult.type; 
+            let time = currentResult.start.date + "at: " + currentResult.start.time;
+            let info = currentResult.uri;
+            let venue = currentResult.venue.displayName;
 
             let songkickResultsOBJ = {
                 name: name,
