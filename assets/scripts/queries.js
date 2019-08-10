@@ -84,7 +84,7 @@ function gPlacesSearch(lat, lng, types, radius) {
 
             gSearchResultsARR.push(gSearchResultOBJ);
 
-            cardTemplate();
+            cardTemplate(gSearchResultOBJ);
 
         }
         // console.log(gSearchResultsARR);

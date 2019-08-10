@@ -1,6 +1,6 @@
 // Call cardTemplate function
 // GENERATE CARD TEMPLATE FUNCTION
-function cardTemplate() {
+function cardTemplate(gSearchResultOBJ) {
 
 
     var template = $("<div>");
