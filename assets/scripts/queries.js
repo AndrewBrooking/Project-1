@@ -19,59 +19,78 @@ function radiusConverter(distanceMi) {
 /**
  * Creates a request for Google Places API call 
  */
+function radiusConverter(distanceMi) {
+    return distanceMi * 1609.34;
+}
+
+/**
+ *  Creates a request for Google Places API call 
+ */
 function gPlacesSearch(lat, lng, types, radius) {
-    // 
     var place = new google.maps.LatLng(lat, lng);
 
-    // 
     var map = new google.maps.Map(document.getElementById('map'), {
         center: place,
         zoom: 15
     });
 
-    // 
     var request = {
         location: place,
         radius: radius,
         type: types,
     };
 
-    // Creates a google places service object to search
+    //creates a google places service object to search
     var service = new google.maps.places.PlacesService(map);
-
-    // Uses google places nearby search method to generate an API call and return a customized array of results
-    return service.nearbySearch(request, function (results, status) {
+    //uses google places nearby search method to generate an API call and return a customized array of results
+    service.nearbySearch(request, function (results, status) {
+        console.log(results)
+        // console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
         var name;
         var location;
         var type;
         var icon;
+        var rating;
+        var open;
+        var placeId;
+        var address;
+        var gSearchResultOBJ;
         var gSearchResultsARR = [];
 
-        // 
         for (var i = 0; i < results.length; i++) {
             currentResult = results[i];
-
-            // 
+            console.log(results[i].name)
             name = currentResult.name;
             location = currentResult.vicinity;
             type = currentResult.types;
             icon = currentResult.icon;
+            rating = currentResult.rating;
+            open = currentResult.opening_hours.open_now;
+            placeId = currentResult.id;
+            address = currentResult.vicinity;
 
-            // 
-            var gSearchResultOBJ = {
+            gSearchResultOBJ = {
                 name: name,
                 location: location,
                 type: type,
                 icon: icon,
+                rating: rating,
+                open: open,
+                id: placeId,
+                address: address
             }
 
-            // 
-            gSearchResultsARR.push(gSearchResultOBJ);
-        }
 
+
+            gSearchResultsARR.push(gSearchResultOBJ);
+
+            cardTemplate();
+
+        }
+        // console.log(gSearchResultsARR);
         return gSearchResultsARR;
     });
-}
+};
 
 //################################## Songkick API Functions ###################################
 
@@ -114,7 +133,7 @@ function getUpcomingMusic(url) {
         for (var i = 0; i < result.length; i++) {
             let currentResult = result[i];
             let name = currentResult.displayName;
-            let type = currentResult.type; 
+            let type = currentResult.type;
             let time = currentResult.start.date + "at: " + currentResult.start.time;
             let info = currentResult.uri;
             let venue = currentResult.venue.displayName;
