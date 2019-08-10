@@ -67,6 +67,11 @@ function initMaterialize() {
 
     // Initialize sidenav components
     $('.sidenav').sidenav();
+
+    // Initialize collapsible components
+    $('.collapsible').collapsible();
+
+    $('.pushpin').pushpin();
 }
 
 /**

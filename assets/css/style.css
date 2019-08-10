@@ -18,6 +18,12 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
     background-color: #ff5252 !important;
 }
 
+main {
+    width: 95%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 /*
 *   Class styles
 */
@@ -40,7 +46,6 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
     color: black !important;
 }
 
-/*--------Search result area-----*/
 .card-content {
     color: black;
 }
@@ -50,7 +55,6 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
 }
 
 .info {
-
     padding: 5px;
     margin: 3px;
 }
@@ -74,4 +78,13 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
 .side-li {
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+#cart {
+    padding: 1rem;
+    border: 1px solid lightgray;
+}
+
+#cart-list>li {
+    padding: 1rem;
 }
