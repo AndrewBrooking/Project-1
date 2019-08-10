@@ -28,6 +28,8 @@
 <body>
 
     <!-- Nav Area -->
+    <nav class="teal">
+        <div class="nav-wrapper container" style="width: 72%">
     <nav class="prism-bg">
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo">
@@ -40,7 +42,11 @@
             <ul class="right hide-on-med-and-down">
                 <!-- Zip Code Input -->
                 <li class="input-field" style="padding-right: 2rem;">
+<<<<<<< HEAD
                     <input type="text" class="white-text" id="zip-input" data-length="5" pattern="[0-9]{5}" title="Please enter a 5 digit zipcode" required>
+=======
+                    <input type="number" class="white-text" id="zip-input" data-length="2" required>
+>>>>>>> 50adee4372fb36a489ef66a5c1950ce59e1542c2
                     <label for="zip-input" class="white-text">Zipcode</label>
                 </li>
 
@@ -165,11 +171,11 @@
                 <!-- Range Selection -->
                 <div class="input-field col s3">
                     <select id="range-filter">
-                        <option value="50" selected>50</option>
-                        <option value="25">25</option>
-                        <option value="15">15</option>
+                        <option value="20" selected>20</option>
+                        <option value="22">22</option>
+                        <option value="12">12</option>
                         <option value="10">10</option>
-                        <option value="5">5</option>
+                        <option value="2">2</option>
                     </select>
                     <label>Range (mi.)</label>
                 </div>
@@ -227,6 +233,7 @@
                 </form>
             </div>
         </div>
+     
 
         <!-- Reset and Done buttons -->
         <div class="modal-footer">
@@ -234,14 +241,83 @@
             <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal-close-btn">Done</a>
         </div>
     </div>
+
+       <!-- Result Area Card -->
+       <div class="container" id="result-container">
+            <div class="col s12 m7">
+                    <div  class="col s12 search-result-text">Search Result</div>
+                    <div class="card horizontal">
+                      <div class="card-image">
+                      </div>
+                      <div class="card-stacked">
+                        <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Hotels<i class="material-icons right">more_vert</i></span>
+                                <div class="row">
+                                    <!-- Map Div-->
+                                    <div class="col s12 m4 l4 info-boxes center-align">
+                                            <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                    </div>
+                                    <!--Place Info-->
+                                    <div class="col s12 m4 r l4 info-boxes">
+                                        <div class="row">
+                                            <div class="col s12 info"><h5>Omni Houston Hotel</h5></div>
+                                            <div class="col s12 info">Houston, 5.6 miles to City center</div>
+                                            <div class="col s12 info">5 rating</div>
+                                         </div>
+                                    </div>
+                                    <!-- Right side links and opening and closing time-->
+                                    <div class="col s12 m4  center-align l4 info-boxes">
+                                            <div class="row">
+                                                    <div class="col s12 info"><p>Open | Close</p></div>
+                                                    <div class="col s12 info">Visit site</div>
+                                                    <div class="col s12 info"></div>
+                                                 </div>
+                                       </div>
+                                 </div>
+                         </div>
+                         <!-- Card Button to Show More Info -->
+                        <div class="card-action">
+                          <button class=" btn activator">Details</button>
+                        </div>
+                      </div>
+                      <!-- Card Revel  -->
+                      <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Images<i class="material-icons right">close</i></span>
+                            <div class="row">
+                                <div class="col s4 m3 l3">
+                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                </div>
+                                <div class="col s4 m3 l3">
+                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                </div>
+                                <div class="col s4 m3 l3">
+                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                </div>
+                                <div class="col s4 m3 l3">
+                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                </div>
+                                <div class="col s4 m3 l3">
+                                        <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                   
+                </div>
+           </div>
+
+
+
     <div id="map"></div>
+          
     <!-- Google Maps Places Library -->
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o&libraries=places">
     </script>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        integrity="sha226-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
     </script>
 
     <!-- Materialize JS -->
