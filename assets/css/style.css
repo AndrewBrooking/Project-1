@@ -7,6 +7,7 @@ nav {
 
 input {
     padding-left: 1rem;
+    
 }
 
 /*
@@ -25,8 +26,10 @@ input {
 .card-content{
     color: black;
 }
+
 .search-result-text{
     padding: 1.5rem;
+  
 }
 
 

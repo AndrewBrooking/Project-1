@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 /// <reference path="../typings/globals/jquery/index.d.ts" />
 
 
-=======
 // ###################### Global Variables ##########################################
 // variable for holding user selected search radius
 var distanceInput;
@@ -16,7 +14,6 @@ const outdoorTypes = ["amusement_park", "campground", "park"];
 const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
 
 //############################## App Logic #############################################
->>>>>>> a8e6fb28fef110135295fdced4681ef8d3c97b46
 // Start logic after page has loaded
 $(document).ready(function () {
 
@@ -81,30 +78,130 @@ function gPlacesSearch(lat, lng, types, radius) {
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
         console.log(results)
-        console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
+       // console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
         var name;
         var location;
         var type;
         var icon;
+        var rating;
+        var open;
+        var placeId;
+        var address;
+        var gSearchResultOBJ;
         var gSearchResultsARR = [];
         
         for (var i = 0; i<results.length; i++) {
             currentResult = results[i];
-
+console.log(results[i].name)
             name = currentResult.name;
             location = currentResult.vicinity;
             type = currentResult.types;
             icon = currentResult.icon;
+            rating = currentResult.rating;
+            open = currentResult.opening_hours.open_now;
+            placeId = currentResult.id;
+            address = currentResult.vicinity;
 
-            var gSearchResultOBJ = {
+             gSearchResultOBJ = {
                 name: name,
                 location: location,
                 type: type,
                 icon: icon,
+                rating: rating,
+                open: open,
+                id: placeId,
+                address: address
             }
+            
+         
+            
             gSearchResultsARR.push(gSearchResultOBJ);
+            // Call cardTemplate function
+         // GENERATE CARD TEMPLATE FUNCTION
+function cardTemplate(){
+    
+      
+   var  template = $("<div>");
+    template.addClass("col s12 m7 black-text");
+    template.html(`
+    
+    <div class="card horizontal">
+    <div class="card-image">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">`+gSearchResultOBJ.name
+              +`<i class="material-icons right">more_vert</i></span>
+              <div class="row">
+                  <!-- Map Div-->
+                  <div class="col s12 m4 l4 info-boxes center-align">
+                          <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                  </div>
+                  <!--Place Info-->
+                  <div class="col s12 m4 r l4 info-boxes">
+                      <div class="row">
+                          <div class="col s12 info"><h5></h5></div>
+                          <div class="col s12 info">`+gSearchResultOBJ.address+`</div>
+                          <div class="col s12 info">
+                          <img width="20" height="20" class"place-icon" src="`+gSearchResultOBJ.icon
+                          +`" alt="`+gSearchResultOBJ.name
+                          +` icon">
+                          </div>
+                          <div class="col s12 info">
+                          <span>Rating</span>
+                          `+gSearchResultOBJ.rating +`
+                          </div>
+                       </div>
+                  </div>
+                  <!-- Right side links and opening and closing time-->
+                  <div class="col s12 m4  center-align l4 info-boxes">
+                          <div class="row">
+                                  <div class="col s12 info" id="`+gSearchResultOBJ.id+`><p class="open-time">`+
+                                  
+                                  
+                                  +`</p></div>
+                                  <div class="col s12 info">Visit site</div>
+                                  <div class="col s12 info"></div>
+                               </div>
+                     </div>
+               </div>
+       </div>
+       <!-- Card Button to Show More Info -->
+      <div class="card-action">
+        <button class=" btn activator">Details</button>
+      </div>
+    </div>
+    <!-- Card Revel  -->
+    <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Images<i class="material-icons right">close</i></span>
+          <div class="row">
+              <div class="col s4 m3 l3">
+                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+              </div>
+              <div class="col s4 m3 l3">
+                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+              </div>
+              <div class="col s4 m3 l3">
+                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+              </div>
+              <div class="col s4 m3 l3">
+                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+              </div>
+              <div class="col s4 m3 l3">
+                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+              </div>
+          </div>
+        </div>
+  </div>
+    
+    `)
+    $("#result-container").append(template)
+}
+
+           cardTemplate();
+        
         }
-        console.log(gSearchResultsARR);
+       // console.log(gSearchResultsARR);
         return gSearchResultsARR;
     });
 };
@@ -113,9 +210,7 @@ function gPlacesSearch(lat, lng, types, radius) {
 
 function search(event) {
     event.preventDefault();
-<<<<<<< HEAD
  
-=======
 
     
     // gets distance from user.  should probably be incorporated into another function
@@ -125,7 +220,6 @@ function search(event) {
     gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
 
 
->>>>>>> a8e6fb28fef110135295fdced4681ef8d3c97b46
     // TODO
 }
 
