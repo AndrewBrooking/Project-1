@@ -116,7 +116,7 @@ console.log(results[i].name)
          
             
             gSearchResultsARR.push(gSearchResultOBJ);
-            
+            // Call cardTemplate function
          // GENERATE CARD TEMPLATE FUNCTION
 function cardTemplate(){
     
@@ -135,7 +135,7 @@ function cardTemplate(){
               <div class="row">
                   <!-- Map Div-->
                   <div class="col s12 m4 l4 info-boxes center-align">
-                          <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                          <img class="materialboxed" width="150" src="``">
                   </div>
                   <!--Place Info-->
                   <div class="col s12 m4 r l4 info-boxes">
