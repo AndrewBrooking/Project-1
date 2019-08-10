@@ -26,35 +26,27 @@
     <!-- Nav Area -->
     <nav class="prism-bg">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">Get Out</a>
+
+            <!-- Logo -->
+            <a href="#" class="brand-logo">
+                <img src="./assets/images/logo.png" alt="Get Out" class="logo">
+            </a>
+
+            <!-- Sidenav Trigger -->
+            <a href="#" data-target="collapsed" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
             <ul class="right hide-on-med-and-down">
+
                 <!-- Zip Code Input -->
                 <li class="input-field" style="padding-right: 2rem;">
-                    <input type="text" class="white-text" id="zip-input" data-length="5" pattern="[0-9]{5}"
-                        title="Please enter a 5 digit zipcode" required="">
+                    <input type="text" class="white-text character-counter" id="zip-input" data-length="5"
+                        pattern="[0-9]{5}" title="Please enter a 5 digit zipcode" required>
                     <label for="zip-input" class="white-text">Zipcode</label>
-                    <span class="character-counter" style="float: right; font-size: 12px;">0/5</span></li>
+                </li>
 
                 <!-- Date Input -->
                 <li class="input-field" style="padding-right: 1rem;">
-                    <div class="modal datepicker-modal" id="modal-9bee6836-ac0a-a9db-6d00-36ce151b23b1" tabindex="0">
-                        <div class="modal-content datepicker-container">
-                            <div class="datepicker-date-display"><span class="year-text"></span><span
-                                    class="date-text"></span></div>
-                            <div class="datepicker-calendar-container">
-                                <div class="datepicker-calendar"></div>
-                                <div class="datepicker-footer"><button class="btn-flat datepicker-clear waves-effect"
-                                        style="visibility: hidden;" type="button"></button>
-                                    <div class="confirmation-btns"><button
-                                            class="btn-flat datepicker-cancel waves-effect"
-                                            type="button">Cancel</button><button
-                                            class="btn-flat datepicker-done waves-effect" type="button">Ok</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><input type="text" class="datepicker white-text" id="date-input" required="">
+                    <input type="text" class="datepicker white-text" id="date-input" required>
                     <label for="date-input" class="white-text">Date</label>
                 </li>
 
@@ -82,77 +74,46 @@
             <h4>Search</h4>
         </li>
 
-        <li style="padding-left: 1rem; padding-right: 1rem;">
+        <li style="margin-left: 1rem; margin-right: 1rem;">
             <hr>
         </li>
 
         <!-- Zip Code Input -->
         <li class="input-field side-li">
-            <input type="number" class="black-text" id="zip-input-mobile" data-length="5" required="">
+            <input type="text" class="white-text character-counter" id="zip-input-mobile" data-length="5"
+                pattern="[0-9]{5}" title="Please enter a 5 digit zipcode" required>
             <label for="zip-input" class="black-text">Zipcode</label>
-            <span class="character-counter" style="float: right; font-size: 12px;"></span></li>
+        </li>
 
         <!-- Date Input -->
         <li class="input-field side-li" style="width: 90%; padding-right: 2rem;">
-            <div class="modal datepicker-modal" id="modal-6f3ed049-d3ef-43db-d177-c5c970ca1272" tabindex="0">
-                <div class="modal-content datepicker-container">
-                    <div class="datepicker-date-display"><span class="year-text"></span><span class="date-text"></span>
-                    </div>
-                    <div class="datepicker-calendar-container">
-                        <div class="datepicker-calendar"></div>
-                        <div class="datepicker-footer"><button class="btn-flat datepicker-clear waves-effect"
-                                style="visibility: hidden;" type="button"></button>
-                            <div class="confirmation-btns"><button class="btn-flat datepicker-cancel waves-effect"
-                                    type="button">Cancel</button><button class="btn-flat datepicker-done waves-effect"
-                                    type="button">Ok</button></div>
-                        </div>
-                    </div>
-                </div>
-            </div><input type="text" class="datepicker black-text" id="date-input-mobile" required="">
+            <input type="text" class="datepicker black-text" id="date-input-mobile" required>
             <label for="date-input" class="black-text">Date</label>
         </li>
 
-        <li style="padding-left: 1rem; padding-right: 1rem;">
-            <hr>
+        <li style="margin-left: 1rem; margin-right: 1rem;">
+            <div class="divider"></div>
         </li>
 
         <!-- Range Selection -->
         <li class="side-li">
             <div class="input-field">
-                <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text" readonly="true"
-                        data-target="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe27">
-                    <ul id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe27"
-                        class="dropdown-content select-dropdown" tabindex="0">
-                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe270" tabindex="0" class="selected">
-                            <span>50</span></li>
-                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe271" tabindex="0"><span>25</span>
-                        </li>
-                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe272" tabindex="0"><span>15</span>
-                        </li>
-                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe273" tabindex="0"><span>10</span>
-                        </li>
-                        <li id="select-options-bbf82eea-bf05-3219-004b-9f88d9a9fe274" tabindex="0"><span>5</span>
-                        </li>
-                    </ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 10l5 5 5-5z"></path>
-                        <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg><select id="range-filter" tabindex="-1">
-                        <option value="50" selected="">50</option>
-                        <option value="25">25</option>
-                        <option value="15">15</option>
-                        <option value="10">10</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-                <label>Range (mi.)</label>
+                <select id="range-filter">
+                    <option value="50" selected>50</option>
+                    <option value="25">25</option>
+                    <option value="15">15</option>
+                    <option value="10">10</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <label>Range (mi.)</label>
             </div>
         </li>
 
         <!-- Day Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked="">
+                <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
                 <span>Day</span>
             </label>
         </li>
@@ -160,7 +121,7 @@
         <!-- Night Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked="">
+                <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
                 <span>Night</span>
             </label>
         </li>
@@ -168,7 +129,7 @@
         <!-- Food Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked="">
+                <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
                 <span>Food</span>
             </label>
         </li>
@@ -176,7 +137,7 @@
         <!-- Music Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked="">
+                <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
                 <span>Music</span>
             </label>
         </li>
@@ -184,7 +145,7 @@
         <!-- Outdoor Checkbox -->
         <li class="side-li">
             <label>
-                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked="">
+                <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
                 <span>Outdoor</span>
             </label>
         </li>
@@ -205,34 +166,16 @@
 
                 <!-- Range Selection -->
                 <div class="input-field col s3">
-                    <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text"
-                            readonly="true" data-target="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a">
-                        <ul id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a"
-                            class="dropdown-content select-dropdown" tabindex="0">
-                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a0" tabindex="0" class="selected">
-                                <span>50</span></li>
-                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a1" tabindex="0">
-                                <span>25</span></li>
-                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a2" tabindex="0">
-                                <span>15</span></li>
-                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a3" tabindex="0">
-                                <span>10</span></li>
-                            <li id="select-options-1b296afa-ac3c-9c52-f964-daa6a9a10c5a4" tabindex="0">
-                                <span>5</span></li>
-                        </ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 10l5 5 5-5z"></path>
-                            <path d="M0 0h24v24H0z" fill="none"></path>
-                        </svg><select id="range-filter" tabindex="-1">
-                            <option value="50" selected="">50</option>
-                            <option value="25">25</option>
-                            <option value="15">15</option>
-                            <option value="10">10</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+                    <select id="range-filter">
+                        <option value="50" selected>50</option>
+                        <option value="25">25</option>
+                        <option value="15">15</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                    </select>
                     <label>Range (mi.)</label>
                 </div>
+<<<<<<< HEAD
 
                 <!-- Checkboxes -->
                 <form class="container right">
@@ -285,7 +228,61 @@
                         </p>
                     </div>
                 </form>
+=======
+>>>>>>> a0ffb6f5cc6e2fc0de0b88ad35af6f52ced93037
             </div>
+
+            <!-- Checkboxes -->
+            <form class="container right">
+
+                <!-- Row 1 -->
+                <div class="row">
+
+                    <!-- Day Checkbox -->
+                    <p class="col s3 right">
+                        <label>
+                            <input type="checkbox" class="filled-in grey darken-4" id="day-filter" checked>
+                            <span>Day</span>
+                        </label>
+                    </p>
+
+                    <!-- Music Checkbox -->
+                    <p class="col s3 right">
+                        <label>
+                            <input type="checkbox" class="filled-in grey darken-4" id="music-filter" checked>
+                            <span>Music</span>
+                        </label>
+                    </p>
+
+                    <!-- Food Checkbox -->
+                    <p class="col s3 right">
+                        <label>
+                            <input type="checkbox" class="filled-in grey darken-4" id="food-filter" checked>
+                            <span>Food</span>
+                        </label>
+                    </p>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row">
+
+                    <!-- Night Checkbox -->
+                    <p class="col s3 right">
+                        <label>
+                            <input type="checkbox" class="filled-in grey darken-4" id="night-filter" checked>
+                            <span>Night</span>
+                        </label>
+                    </p>
+
+                    <!-- Outdoor Checkbox -->
+                    <p class="col s3 right">
+                        <label>
+                            <input type="checkbox" class="filled-in grey darken-4" id="outdoor-filter" checked>
+                            <span>Outdoor</span>
+                        </label>
+                    </p>
+                </div>
+            </form>
         </div>
 
         <!-- Reset and Done buttons -->
@@ -295,30 +292,55 @@
         </div>
     </div>
 
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
+    <!-- Main content area -->
+    <main class="row">
 
-    <!-- Result Area Card -->
-    <div class="container" id="result-container">
-        <div class="col s12 m7">
-            <div class="col s12 search-result-text">Search Result</div>
-             </div>
-    </div>
+        <!-- Result Area -->
+        <div class="col s12 m8 left">
+            <div class="col s12" id="result-container">
+
+                <span class="search-result-text">
+                    <h6>Search Result</h6>
+                </span>
+            </div>
+        </div>
+
+        <!-- Cart Area -->
+        <div class="col s12 m4 right" id="cart">
+
+            <h6>Selected Activities</h6>
+
+            <div class="divider"></div>
+
+            <!-- Selected Activities -->
+            <ul class="collection" id="cart-list">
+                <li>
+                    <p>Add something to the cart to see it here.</p>
+                </li>
+            </ul>
+
+            <!-- GO Button -->
+            <button class="btn red accent-2 waves-effect waves-light" id="go-btn">GO</button>
+        </div>
+    </main>
 
     <div id="map"></div>
 
     <!-- Google Maps Places Library -->
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o&libraries=places">
-        </script>
+    </script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Card Template JS -->
+    <script src="./assets/scripts/card-template.js"></script>
 
     <!-- Queries JS -->
     <script src="./assets/scripts/queries.js"></script>

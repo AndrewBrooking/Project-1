@@ -153,8 +153,8 @@ console.log(results[i].name)
                  </div>
                  <!-- Card Button to Show More Info -->
                  <div class="card-action">
-                     <button class=" btn activator black">Details</button>
-                     <a class=" add-basket btn-floating  btn-small waves-effect waves-light black"><i class="material-icons">add</i></a>
+                     <button class=" btn activator red">Details</button>
+                     <a class=" add-basket btn-floating  btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
                  </div>
              </div>
              <!-- Card Revel  -->
