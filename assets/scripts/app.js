@@ -135,7 +135,7 @@ function cardTemplate(){
               <div class="row">
                   <!-- Map Div-->
                   <div class="col s12 m4 l4 info-boxes center-align">
-                          <img class="materialboxed" width="150" src="``">
+                          <img class="materialboxed" width="150" src="`+results.photos.getUrl+`">
                   </div>
                   <!--Place Info-->
                   <div class="col s12 m4 r l4 info-boxes">
