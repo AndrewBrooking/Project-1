@@ -41,17 +41,18 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
 }
 
 /*--------Search result area-----*/
-.card-content{
+.card-content {
     color: black;
 }
-.search-result-text{
+
+.search-result-text {
     padding: 1.5rem;
 }
 
-.info{
+.info {
 
-  padding: 5px;
-  margin: 3px;
+    padding: 5px;
+    margin: 3px;
 }
 
 .input-field input[type=text]:focus,

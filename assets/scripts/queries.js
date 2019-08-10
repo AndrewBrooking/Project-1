@@ -113,11 +113,11 @@ function getUpcomingMusic(url) {
 
         for (var i = 0; i < result.length; i++) {
             let currentResult = result[i];
-            name = currentResult.displayName;
-            type = currentResult.type;
-            time = currentResult.start.date + "at: " + currentResult.start.time;
-            info = currentResult.uri;
-            venue = currentResult.venue.displayName;
+            let name = currentResult.displayName;
+            let type = currentResult.type; 
+            let time = currentResult.start.date + "at: " + currentResult.start.time;
+            let info = currentResult.uri;
+            let venue = currentResult.venue.displayName;
 
             let songkickResultsOBJ = {
                 name: name,

@@ -13,7 +13,7 @@ var filterOutdoor = true;
 // Variable for holding user selected search radius
 var distanceInput;
 
-var searchArea = [29.7604,-95.3698]; //needs to be a latlng generated from user inputted zipcode
+var searchArea = [29.7604, -95.3698]; //needs to be a latlng generated from user inputted zipcode
 
 // Arrays of gplaces types organized by user search options
 const nightTypes = ["bar", "bakery", "casino", "night_club", "stadium", "bowling_alley", "art_gallery", "movie_theater"];
