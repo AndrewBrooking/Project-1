@@ -41,7 +41,6 @@ $(document).ready(function () {
     $(document).on("click", "#go-btn", goEvent);
 });
 
-<<<<<<< HEAD
 function init() {
 
     // Initialize input character counting
@@ -60,13 +59,11 @@ function init() {
     // Intialize select fields
     $('select').formSelect();
 }
-=======
 // #################################   API Info ##########################################
 
 //yelp
 const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
 const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
->>>>>>> 92ed1cf612cbcc8676b5f5da5d9f8af88dfa92da
 
 // ################################# Google Places API Functions  #############################
 //TODO
@@ -97,10 +94,6 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 92ed1cf612cbcc8676b5f5da5d9f8af88dfa92da
         var name;
         var location;
         var type;
