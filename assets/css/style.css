@@ -7,6 +7,7 @@ nav {
 
 input {
     padding-left: 1rem;
+    
 }
 
 ul.dropdown-content.select-dropdown li span {
@@ -44,8 +45,10 @@ input[type="checkbox"].filled-in:checked+span:not(.lever):after {
 .card-content{
     color: black;
 }
+
 .search-result-text{
     padding: 1.5rem;
+  
 }
 
 .info{
