@@ -110,7 +110,7 @@ console.log(results[i].name)
       
          function cardTemplate(){
    
-      
+      $(".search-result-text").html("Result")
             template = $("<div>");
              template.addClass("col s12 m7 black-text");
              template.html(`
@@ -120,16 +120,17 @@ console.log(results[i].name)
              </div>
              <div class="card-stacked">
                  <div class="card-content">
-                     <span class="card-title activator grey-text text-darken-4">`+gSearchResultOBJ.name+`<i
+                     <span class="card-title activator grey-text text-darken-4"><img width="20" height="20" src=`+gSearchResultOBJ.icon + `> ` + gSearchResultOBJ.name+`<i
                              class="material-icons right">more_vert</i></span>
                      <div class="row">
                          <!-- Map Div-->
-                         <div class="col s12 m4 l4 info-boxes center-align">
+                         <div class="col s12 info-boxes center-align">
                              <img class="materialboxed" width="150"
-                                 src="`+currentResult.photos[0] +`">
+                                 src=" `+currentResult.photos[0].getUrl()+`">
+                                 <p>src `+currentResult.photos[0].html_attributions +`</p>
                          </div>
                          <!--Place Info-->
-                         <div class="col s12 m4 r l4 info-boxes">
+                         <div class="col s12  info-boxes">
                              <div class="row">
                                  <div class="col s12 info">
                                      <h5></h5>
@@ -139,7 +140,7 @@ console.log(results[i].name)
                              </div>
                          </div>
                          <!-- Right side links and opening and closing time-->
-                         <div class="col s12 m4  center-align l4 info-boxes">
+                         <div class="col s12  center-align l4 info-boxes">
                              <div class="row">
                                  <div class="col s12 info">
                                      <p class="hours"> </p>
