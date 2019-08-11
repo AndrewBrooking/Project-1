@@ -1,13 +1,32 @@
 // #################################   API Info ##########################################
 
-//yelp
-// const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
-// const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
 
 // Songkick
 const songkickApiKey = "&apikey=OJjdV1C71cGFN7Nj";
 
+// ############################### Zipcode to LatLng API  ###############################
+//converts zipcode to latitude and longitude for apis
+function getLatLng (zipcode) {
+    var zipcodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+ zipcode +"&key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o"
+    let apiPromise = $.ajax({
+        url: zipcodeURL,
+        method: 'GET'
+    }).then(function (data) {
+        let geocodedZipObj = data.results[0].geometry.location;
+
+        searchAreaSongkick = `${geocodedZipObj.lat},${geocodedZipObj.lng}`
+        
+        searchAreaARR = [geocodedZipObj.lat, geocodedZipObj.lng];
+
+        return true;
+    });
+    return apiPromise;
+}
+
+
 // ############################### Google Places API Functions ###############################
+//global variable 
+var gSearchResultsARR = [];
 
 /**
  * Convert input from miles to meters
@@ -47,29 +66,28 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
-        console.log(results)
-        // console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
+        if (status !== "OK") {
+            console.log(`Error: ${status}`);
+            return;
+        }
 
         var name;
         var location;
         var type;
         var icon;
         var rating;
-        var open;
         var placeId;
         var address;
         var gSearchResultOBJ;
-        var gSearchResultsARR = [];
 
         for (var i = 0; i < results.length; i++) {
             currentResult = results[i];
-            console.log(results[i].name)
+
             name = currentResult.name;
             location = currentResult.vicinity;
             type = currentResult.types;
             icon = currentResult.icon;
             rating = currentResult.rating;
-            open = currentResult.opening_hours.open_now;
             placeId = currentResult.id;
             address = currentResult.vicinity;
 
@@ -79,32 +97,28 @@ function gPlacesSearch(lat, lng, types, radius) {
                 type: type,
                 icon: icon,
                 rating: rating,
-                open: open,
                 id: placeId,
                 address: address
             }
+            if (gSearchResultOBJ.type.includes("lodging")) { //Fuck hotels
 
-            gplacesResults.push(gSearchResultOBJ);
-
-            cardTemplate(gplacesResults.length - 1);
-        }
+            }
+            else {
+                cardTemplate(gSearchResultOBJ);
+                searchResults.push(gSearchResultOBJ);
+            }
+        };
     });
 };
 
 //################################## Songkick API Functions ###################################
-
-//use zipcode to do location search and get metro id
-//get date from user
-//do upcoming events search and return search object for display
-
-var searchArea = "29.7604,-95.3698"; //needs to be a latlng generated from user inputted zipcode
-date = "2019-08-09"; //date in form YYYY-MM-DD
-var songkickResultsArr = [];
-let locSearchURL = "https://api.songkick.com/api/3.0/search/locations.json?" + songkickApiKey + "&location=geo:" + searchArea;
-musicSearch(locSearchURL);
+//global variables
+var searchAreaSongkick = ""; //string that is updated with latlng generated from user inputted zipcode
+dateString = moment().format('YYYY-MM-DD'); //date in form YYYY-MM-DD
 
 //function does an api call to get songkick metro id from latlng. then calls function to do upcoming events search
-function musicSearch(locationURL) {
+function musicSearch() {
+    let locationURL = "https://api.songkick.com/api/3.0/search/locations.json?" + songkickApiKey + "&location=geo:" + searchAreaSongkick;
 
     $.ajax({
         url: locationURL,
@@ -112,7 +126,7 @@ function musicSearch(locationURL) {
     }).then(function (data) {
         var metroID = data.resultsPage.results.location[0].metroArea.id;
 
-        let upcomingMusicURL = "https://api.songkick.com/api/3.0/metro_areas/" + metroID + "/calendar.json?&min_date=" + date + "&max_date=" + date + songkickApiKey;
+        let upcomingMusicURL = "https://api.songkick.com/api/3.0/metro_areas/" + metroID + "/calendar.json?&min_date=" + dateString + "&max_date=" + dateString + songkickApiKey;
 
         getUpcomingMusic(upcomingMusicURL);
 
@@ -126,10 +140,10 @@ function getUpcomingMusic(url) {
         url: url,
         method: 'GET'
     }).then(function (data) {
-        console.log(data);
+
         var result = data.resultsPage.results.event;
 
-        for (var i = 0; i < result.length; i++) {
+        for (var i = 0; i < 10; i++) {
             let currentResult = result[i];
             let name = currentResult.displayName;
             let type = currentResult.type;
@@ -143,10 +157,10 @@ function getUpcomingMusic(url) {
                 venue: venue,
                 info: info,
                 time: time,
+                icon: "./assets/images/ticket-concert-512.png",
             }
-
-            songkickResultsArr.push(songkickResultsOBJ);
+            cardTemplate(songkickResultsOBJ);
+            searchResults.push(songkickResultsOBJ);
         }
-        console.log(songkickResultsArr);
     });
 }

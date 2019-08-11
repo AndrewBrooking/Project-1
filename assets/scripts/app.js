@@ -1,10 +1,13 @@
 /// <reference path="../typings/globals/jquery/index.d.ts" />
 
 // ###################### Global Variables ##########################################
+//Array holding search results from all APIs 
+var searchResults = [];
 
 // variable for holding user selected search radius
 var distanceInput;
-var searchArea = [29.7604, -95.3698]; //needs to be a latlng generated from user inputted zipcode
+
+var searchAreaARR = []; //needs to be a latlng generated from user inputted zipcode
 
 // Create filter variables and initalize them with default values
 let filterRange = 50;
@@ -15,10 +18,45 @@ let filterMusic = true;
 let filterOutdoor = true;
 
 // arrays of gplaces types organized by user search options
-const nightTypes = ["bar", "bakery", "casino", "night_club", "stadium", "bowling_alley", "art_gallery", "movie_theater"];
-const dayTypes = ["amusement_park", "aquarium", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum", "stadium"];
+const nightTypes = ["night_club", "bar", "bowling_alley", "art_gallery", "movie_theater"];
+const dayTypes = ["amusement_park", "art_gallery", "bowling_alley", "cafe", "campground", "park", "museum", "aquarium"];
 const outdoorTypes = ["amusement_park", "campground", "park"];
-const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
+const allTypes = ["amusement_park", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "aquarium"];
+const foodType = ["restaurant"];
+
+
+//Array of google search types to use for search
+var typesArr = allTypes;
+
+//############################## Search Logic #############################################
+function setTypesforGS() {
+    let checkArr = [{ checked: filterDay, filter: dayTypes }, { checked: filterNight, filter: nightTypes }, { checked: filterFood, filter: foodType }, { checked: filterOutdoor, filter: outdoorTypes }];
+
+    if (filterDay && filterNight && filterFood && filterMusic && filterDay) {
+        typeArr = allTypes;
+
+    }
+    else {
+        typesArr = [];
+        for (var i = 0; i < checkArr.length; i++) {
+            if (checkArr[i].checked) {
+
+                typesArr = [...typesArr, ...checkArr[i].filter];
+            }
+        }
+    }
+}
+
+function multiTypeSearch() {
+    if (filterMusic) {
+        musicSearch();
+    }
+    for (var i = 0; i < typesArr.length; i++) {
+        type = [typesArr[i]];
+        let newArr = gPlacesSearch(searchAreaARR[0], searchAreaARR[1], type, radiusConverter(filterRange));
+
+    }
+}
 
 // GPlaces search results
 let gplacesResults = [];
@@ -107,6 +145,8 @@ function checkboxEvent(event) {
             filterOutdoor = status;
             break;
     }
+    //Changes google api search types according to selection boxes
+    setTypesforGS();
 }
 
 /**
@@ -125,12 +165,18 @@ function searchEvent(event) {
     // Obtain zip code and date values
 
     let zip = $("#zip-input").val() || $("#zip-input-mobile").val();
-    let date = M.Datepicker.getInstance($("#date-input")).toString() ||
-        M.Datepicker.getInstance($("#date-input-mobile")).toString();
+    // let date = M.Datepicker.getInstance($("#date-input")).toString() ||
+    //     M.Datepicker.getInstance($("#date-input-mobile")).toString();
+    let date = M.Datepicker.getInstance($("#date-input")).date;
+    dateString = moment(date).format('YYYY-MM-DD');
 
-    // creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
-    var radiusInMeters = radiusConverter(filterRange);
-    gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
+    //converts zip to latitude and longitude for apis
+    getLatLng(zip).then(function () {
+        //clears old results and performs google places api call and updates dom
+        $("#result-container").empty();
+        multiTypeSearch();
+        console.log(searchResults);
+    })
 }
 
 /**
