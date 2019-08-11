@@ -17,7 +17,7 @@ function cardTemplate(index) {
 
       <div class="card-content">
 
-              <span class="card-title activator">` + resultObj.name +
+              <span class="card-title">` + resultObj.name +
                 `<a class="btn add-cart red accent-2 white text right" data-index="` + index + `">
                         <i class="material-icons">add</i>
                 </a>

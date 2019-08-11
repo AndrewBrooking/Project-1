@@ -293,7 +293,7 @@ function generateItinerary() {
     var main = $("main");
 
     // Clear main content area
-    main.emtpy();
+    main.empty();
 
     var mainDiv = $("<div>").addClass("col s12 black-text");
 
@@ -301,15 +301,15 @@ function generateItinerary() {
     for (var activity of cart) {
         var card = $("<div>").addClass("card horizontal");
 
-        var img = $('<img class="materialboxed" width="150" src="' + activity.icon + '">');
+        var img = $('<img class="materialboxed" width="150px" src="' + activity.icon + '">');
 
-        var cardImg = $("<div>").addClass("card-image").append(img);
+        var cardImg = $("<div>").addClass("card-image valign-wrapper center-align").append(img);
 
-        var cardTitle = $("<span>").addClass(card-title).text(activity.name);
+        var cardTitle = $("<span>").addClass("card-title").text(activity.name);
 
         var cardAddress = $("<p>").text("Address: " + activity.address);
 
-        var cardRating = $("<p>").text("Rating: ") + activity.rating;
+        var cardRating = $("<p>").text("Rating: " + activity.rating);
 
         var cardContent = $("<div>").addClass("card-content");
 
