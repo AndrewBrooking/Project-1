@@ -27,7 +27,7 @@ function cardTemplate(index) {
 
                   <!-- Map Div-->
                   <div class="col s12 m4 l4 info-boxes center-align">
-                          <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                          <img class="materialboxed" width="150" src=${resultObj.photo}>
                   </div>
 
                   <!--Place Info-->
@@ -69,19 +69,19 @@ function cardTemplate(index) {
           <span class="card-title grey-text text-darken-4">Images<i class="material-icons right">close</i></span>
           <div class="row">
               <div class="col s4 m3 l3">
-                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                      <img class="materialboxed" width="150px" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
               </div>
               <div class="col s4 m3 l3">
-                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                      <img class="materialboxed" width="150px" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
               </div>
               <div class="col s4 m3 l3">
-                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                      <img class="materialboxed" width="150px" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
               </div>
               <div class="col s4 m3 l3">
-                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                      <img class="materialboxed" width="150px" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
               </div>
               <div class="col s4 m3 l3">
-                      <img class="materialboxed" width="150" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
+                      <img class="materialboxed" width="150px" src="https://images.unsplash.com/photo-1476385822777-70eabacbd41f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60">
               </div>
           </div>
         </div>

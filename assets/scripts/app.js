@@ -308,7 +308,7 @@ function generateItinerary() {
     for (var activity of cart) {
         var card = $("<div>").addClass("card horizontal");
 
-        var img = $('<img class="materialboxed" width="150px" src="' + activity.icon + '">');
+        var img = $('<img class="materialboxed" style="max-width:150px" src="' + activity.icon + '">');
 
         var cardImg = $("<div>").addClass("card-image valign-wrapper center-align").append(img);
 

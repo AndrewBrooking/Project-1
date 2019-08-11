@@ -68,7 +68,7 @@ function gPlacesSearch(lat, lng, types, radius) {
             console.log(`Error: ${status}`);
             return;
         }
-
+        console.log(results);
         var name;
         var location;
         var type;
@@ -88,6 +88,7 @@ function gPlacesSearch(lat, lng, types, radius) {
             rating = currentResult.rating;
             placeId = currentResult.id;
             address = currentResult.vicinity;
+            photo = currentResult.photos[0].getUrl()
 
             gSearchResultOBJ = {
                 name: name,
@@ -96,7 +97,8 @@ function gPlacesSearch(lat, lng, types, radius) {
                 icon: icon,
                 rating: rating,
                 id: placeId,
-                address: address
+                address: address,
+                photo: photo,
             }
             if (gSearchResultOBJ.type.includes("lodging")) {
                 return;
@@ -140,7 +142,7 @@ function getUpcomingMusic(url) {
     }).then(function (data) {
 
         var result = data.resultsPage.results.event;
-
+        console.log(result);
         for (var i = 0; i < 10; i++) {
             var currentResult = result[i];
             var name = currentResult.displayName;
@@ -156,6 +158,8 @@ function getUpcomingMusic(url) {
                 info: info,
                 time: time,
                 icon: "./assets/images/ticket-concert-512.png",
+                photo: "./assets/images/concert-pic.jpg",
+
             }
             
             searchResults.push(songkickResultsOBJ);
