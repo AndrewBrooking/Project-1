@@ -21,7 +21,7 @@ const outdoorTypes = ["amusement_park", "campground", "park"];
 const allTypes = ["amusement_park", "aquarium", "art_gallery", "bar", "bowling_alley", "cafe", "campground", "casino", "movie_theater", "museum", "night_club", "park", "restaurant", "stadium"];
 
 // GPlaces search results
-let gplacesResults;
+let gplacesResults = [];
 
 // Holds all activities in the cart
 let cart = [];
@@ -48,7 +48,9 @@ $(document).ready(function () {
     $(document).on("click", "#go-btn", goEvent);
 
     // Handle add to cart click events
-    $(document).on("click", ".add-basket", addCartEvent);
+    $(document).on("click", ".add-cart", addCartEvent);
+
+    $(document).on("click", ".clear-btn", removeActivity);
 });
 
 //##################################### APP Functions #################################################
@@ -128,9 +130,7 @@ function searchEvent(event) {
 
     // creates a radius in meters for the gPlacesSearch function call. also will probably end up somewhere else
     var radiusInMeters = radiusConverter(filterRange);
-    gplacesResults = gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
-
-    // TODO
+    gPlacesSearch(searchArea[0], searchArea[1], ['restaurant'], radiusInMeters);
 }
 
 /**
@@ -139,7 +139,18 @@ function searchEvent(event) {
 function goEvent(event) {
     event.preventDefault();
 
-    // TODO
+    // Check that cart is not empty
+    if (!cart.length > 0) {
+        return;
+    }
+
+    let main = $("main");
+
+    // Clear main content area
+    main.emtpy();
+
+    // Generate a new intinerary
+    generateItinerary();
 }
 
 function addCartEvent(event) {
@@ -162,10 +173,48 @@ function addCartEvent(event) {
         cart.push(activity);
     }
 
-    // Add the activity to the cart
+    // Create text element
     let text = $("<span>").text(activity.name);
-    let icon = $("<i>").addClass("material-icons red accent-2").text("clear");
-    let btn = $("<a>").addClass("secondary-content").append(icon);
-    let li = $("<li>").addClass("collection-item").append(text).append(btn);
+
+    // Create clear button
+    let btn = $("<a>")
+        .addClass("secondary-content btn-flat clear-btn red-text")
+        .attr("data-index", index)
+        .html('<i class="material-icons">clear</i>');
+
+    // Create list item and append text and clear button
+    let li = $("<li>")
+        .addClass("collection-item")
+        .attr("data-index", index)
+        .append(text)
+        .append(btn);
+
+    // Append list item to the cart list
     cartList.append(li);
+}
+
+function removeActivity(event) {
+    event.preventDefault();
+
+    console.log("Remove clicked");
+
+    // Get activity that to remove from the cart
+    let resIndex = $(this).attr("data-index");
+    let activity = gplacesResults[resIndex];
+
+    // Get index of the activity in the cart
+    let cartIndex = cart.indexOf(activity);
+
+    console.log(resIndex, cartIndex, activity);
+
+    // Get element to remove
+    let li = $("ul#cart-list:nth-child(" + (cartIndex + 1) + ")");
+    
+    console.log(li);
+
+    // Remove from cart list
+    $("#cart-list").remove(li);
+
+    // Remove from cart array
+    cart.splice(cartIndex, 1);
 }

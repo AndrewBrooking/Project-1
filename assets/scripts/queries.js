@@ -27,6 +27,8 @@ function radiusConverter(distanceMi) {
  *  Creates a request for Google Places API call 
  */
 function gPlacesSearch(lat, lng, types, radius) {
+    gplacesResults = [];
+
     var place = new google.maps.LatLng(lat, lng);
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -42,10 +44,12 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //creates a google places service object to search
     var service = new google.maps.places.PlacesService(map);
+
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
         console.log(results)
         // console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
+
         var name;
         var location;
         var type;
@@ -80,15 +84,10 @@ function gPlacesSearch(lat, lng, types, radius) {
                 address: address
             }
 
+            gplacesResults.push(gSearchResultOBJ);
 
-
-            gSearchResultsARR.push(gSearchResultOBJ);
-
-            cardTemplate(gSearchResultOBJ);
-
+            cardTemplate(gplacesResults.length - 1);
         }
-        // console.log(gSearchResultsARR);
-        return gSearchResultsARR;
     });
 };
 
