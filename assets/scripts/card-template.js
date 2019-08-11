@@ -2,10 +2,10 @@
 // GENERATE CARD TEMPLATE FUNCTION
 function cardTemplate(gSearchResultOBJ) {
 
-
-    var template = $("<div>");
-    template.addClass("col s12 m7 black-text");
-    template.html(`
+        
+        var template = $("<div>");
+        template.addClass("col s12 m7 black-text");
+        template.html(`
     
     <div class="card horizontal">
     <div class="card-image">
@@ -13,7 +13,7 @@ function cardTemplate(gSearchResultOBJ) {
     <div class="card-stacked">
       <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">` + gSearchResultOBJ.name +
-        `<i class="material-icons right">more_vert</i></span>
+                `<i class="material-icons right">more_vert</i></span>
               <div class="row">
                   <!-- Map Div-->
                   <div class="col s12 m4 l4 info-boxes center-align">
@@ -26,8 +26,8 @@ function cardTemplate(gSearchResultOBJ) {
                           <div class="col s12 info">` + gSearchResultOBJ.address + `</div>
                           <div class="col s12 info">
                           <img width="20" height="20" class"place-icon" src="` + gSearchResultOBJ.icon +
-        `" alt="` + gSearchResultOBJ.name +
-        ` icon">
+                `" alt="` + gSearchResultOBJ.name +
+                ` icon">
                           </div>
                           <div class="col s12 info">
                           <span>Rating</span>
@@ -41,7 +41,7 @@ function cardTemplate(gSearchResultOBJ) {
                                   <div class="col s12 info" id="` + gSearchResultOBJ.id + `><p class="open-time">` +
 
 
-        +`</p></div>
+                +`</p></div>
                                   <div class="col s12 info">Visit site</div>
                                   <div class="col s12 info"></div>
                                </div>
@@ -77,5 +77,5 @@ function cardTemplate(gSearchResultOBJ) {
   </div>
     
     `)
-    $("#result-container").append(template)
+        $("#result-container").append(template)
 }
