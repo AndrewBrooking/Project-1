@@ -85,6 +85,9 @@ $(document).ready(function () {
     // Handle go button click events
     $(document).on("click", "#go-btn", goEvent);
 
+    //Handle reset button click events
+    $(document).on("click", "#reset-btn", resetFilters);
+    
     // Handle add to cart click events
     $(document).on("click", ".add-cart", addCartEvent);
 
@@ -156,6 +159,10 @@ function rangeEvent(event) {
     filterRange = this.value;
 }
 
+function resetFilters() {
+    $("input[type='checkbox']").prop("checked", true);
+   //TODO make range filter reset
+};
 /**
  * Performs the querying actions using filter settings
  */
@@ -165,9 +172,10 @@ function searchEvent(event) {
     // Obtain zip code and date values
 
     let zip = $("#zip-input").val() || $("#zip-input-mobile").val();
-    // let date = M.Datepicker.getInstance($("#date-input")).toString() ||
-    //     M.Datepicker.getInstance($("#date-input-mobile")).toString();
-    let date = M.Datepicker.getInstance($("#date-input")).date;
+
+    let date = M.Datepicker.getInstance($("#date-input")).date ||
+        M.Datepicker.getInstance($("#date-input-mobile")).date;
+
     dateString = moment(date).format('YYYY-MM-DD');
 
     //converts zip to latitude and longitude for apis
