@@ -8,8 +8,11 @@ A date/event planning application to aggregate nearby options for activities.
 
 # APIs Used:
 * Songkick (https://www.songkick.com/developer/)
-* Fiz Places (https://rapidapi.com/Fizplaces/api/fiz-places)
-* Hoppit (https://rapidapi.com/hoppitapi/api/hoppit-restaurant-guide)
-* Trail (https://rapidapi.com/trailapi/api/trailapi)
+* Google Places (https://developers.google.com/places/web-service/intro)
+* Geocodes (https://developers.google.com/maps/documentation/geocoding/start)
 
 # Libraries Used:
+* jQuery (https://jquery.com/)
+* Materialize (https://materializecss.com/)
+* Moment.JS (https://momentjs.com/)
+* Google Maps Places (https://developers.google.com/maps/documentation/javascript/places)
