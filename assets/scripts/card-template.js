@@ -76,6 +76,6 @@ function cardTemplate(index) {
         </div>
   </div>
     
-    `)
-        $("#result-container").append(template)
+    `);
+        $("#result-container").append(template);
 }

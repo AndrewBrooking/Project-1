@@ -153,13 +153,16 @@ function goEvent(event) {
     generateItinerary();
 }
 
+/**
+ * TODO
+ */
 function addCartEvent(event) {
     event.preventDefault();
 
     // Obtain reference to cart
     let cartList = $("#cart-list");
 
-    // Clear cart if empty
+    // Clear empty message in cart list
     if (cart.length === 0) {
         cartList.empty();
     }
@@ -169,10 +172,56 @@ function addCartEvent(event) {
     let activity = gplacesResults[index];
 
     // Check if activity is already in cart, if not then add it to the cart array
-    if (!cart.includes(activity)) {
-        cart.push(activity);
+    if (cart.includes(activity)) {
+        return;
     }
 
+    // Add activity to cart array
+    cart.push(activity);
+
+    // Add activity to cart list
+    appendCartActivity(index, activity);
+}
+
+/**
+ * TODO
+ */
+function removeActivity(event) {
+    event.preventDefault();
+
+    console.log("Remove clicked");
+
+    // Get activity that to remove from the cart
+    let resIndex = $(this).attr("data-index");
+    let activity = gplacesResults[resIndex];
+
+    // Get index of the activity in the cart
+    let cartIndex = cart.indexOf(activity);
+
+    // Remove from cart array
+    cart.splice(cartIndex, 1);
+
+    // Clear cart list
+    $("#cart-list").empty();
+
+    // Check if cart is empty
+    if (cart.length === 0) {
+        // Display empty message
+        $("#cart-list").append(
+            $("<p>").addClass("center-align").text("Empty")
+        );
+    } else {
+        // Repopulate cart
+        for (var i = 0; i < cart.length; i++) {
+            appendCartActivity(i, cart[i]);
+        }
+    }
+}
+
+/**
+ * TODO
+ */
+function appendCartActivity(index, activity) {
     // Create text element
     let text = $("<span>").text(activity.name);
 
@@ -190,31 +239,5 @@ function addCartEvent(event) {
         .append(btn);
 
     // Append list item to the cart list
-    cartList.append(li);
-}
-
-function removeActivity(event) {
-    event.preventDefault();
-
-    console.log("Remove clicked");
-
-    // Get activity that to remove from the cart
-    let resIndex = $(this).attr("data-index");
-    let activity = gplacesResults[resIndex];
-
-    // Get index of the activity in the cart
-    let cartIndex = cart.indexOf(activity);
-
-    console.log(resIndex, cartIndex, activity);
-
-    // Get element to remove
-    let li = $("ul#cart-list:nth-child(" + (cartIndex + 1) + ")");
-    
-    console.log(li);
-
-    // Remove from cart list
-    $("#cart-list").remove(li);
-
-    // Remove from cart array
-    cart.splice(cartIndex, 1);
+    $("#cart-list").append(li);
 }
