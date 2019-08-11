@@ -10,12 +10,12 @@ var distanceInput;
 var searchAreaARR = []; //needs to be a latlng generated from user inputted zipcode
 
 // Create filter variables and initalize them with default values
-let filterRange = 50;
-let filterDay = true;
-let filterNight = true;
-let filterFood = true;
-let filterMusic = true;
-let filterOutdoor = true;
+var filterRange = 50;
+var filterDay = true;
+var filterNight = true;
+var filterFood = true;
+var filterMusic = true;
+var filterOutdoor = true;
 
 // arrays of gplaces types organized by user search options
 const nightTypes = ["night_club", "bar", "bowling_alley", "art_gallery", "movie_theater"];
@@ -30,7 +30,7 @@ var typesArr = allTypes;
 
 //############################## Search Logic #############################################
 function setTypesforGS() {
-    let checkArr = [{ checked: filterDay, filter: dayTypes }, { checked: filterNight, filter: nightTypes }, { checked: filterFood, filter: foodType }, { checked: filterOutdoor, filter: outdoorTypes }];
+    var checkArr = [{ checked: filterDay, filter: dayTypes }, { checked: filterNight, filter: nightTypes }, { checked: filterFood, filter: foodType }, { checked: filterOutdoor, filter: outdoorTypes }];
 
     if (filterDay && filterNight && filterFood && filterMusic && filterDay) {
         typeArr = allTypes;
@@ -53,16 +53,16 @@ function multiTypeSearch() {
     }
     for (var i = 0; i < typesArr.length; i++) {
         type = [typesArr[i]];
-        let newArr = gPlacesSearch(searchAreaARR[0], searchAreaARR[1], type, radiusConverter(filterRange));
+        var newArr = gPlacesSearch(searchAreaARR[0], searchAreaARR[1], type, radiusConverter(filterRange));
 
     }
 }
 
 // GPlaces search results
-let gplacesResults = [];
+var gplacesResults = [];
 
 // Holds all activities in the cart
-let cart = [];
+var cart = [];
 
 //############################## App Logic #############################################
 
@@ -88,6 +88,7 @@ $(document).ready(function () {
     // Handle add to cart click events
     $(document).on("click", ".add-cart", addCartEvent);
 
+    // Handle remove activity from cart events
     $(document).on("click", ".clear-btn", removeActivity);
 });
 
@@ -122,10 +123,10 @@ function initMaterialize() {
  */
 function checkboxEvent(event) {
     // Obtain id of checkbox that was clicked
-    let id = $(this).attr("id");
+    var id = $(this).attr("id");
 
     // Obtain current status of the checkbox
-    let status = $(this).prop("checked");
+    var status = $(this).prop("checked");
 
     // Set corresponding filter value to the new value
     switch (id) {
@@ -145,6 +146,7 @@ function checkboxEvent(event) {
             filterOutdoor = status;
             break;
     }
+
     //Changes google api search types according to selection boxes
     setTypesforGS();
 }
@@ -162,12 +164,14 @@ function rangeEvent(event) {
 function searchEvent(event) {
     event.preventDefault();
 
-    // Obtain zip code and date values
+    // Empty search results
+    searchResults = [];
 
-    let zip = $("#zip-input").val() || $("#zip-input-mobile").val();
-    // let date = M.Datepicker.getInstance($("#date-input")).toString() ||
+    // Obtain zip code and date values
+    var zip = $("#zip-input").val() || $("#zip-input-mobile").val();
+    // var date = M.Datepicker.getInstance($("#date-input")).toString() ||
     //     M.Datepicker.getInstance($("#date-input-mobile")).toString();
-    let date = M.Datepicker.getInstance($("#date-input")).date;
+    var date = M.Datepicker.getInstance($("#date-input")).date;
     dateString = moment(date).format('YYYY-MM-DD');
 
     //converts zip to latitude and longitude for apis
@@ -190,23 +194,18 @@ function goEvent(event) {
         return;
     }
 
-    let main = $("main");
-
-    // Clear main content area
-    main.emtpy();
-
     // Generate a new intinerary
     generateItinerary();
 }
 
 /**
- * TODO
+ * Adds the clicked activity to the cart
  */
 function addCartEvent(event) {
     event.preventDefault();
 
     // Obtain reference to cart
-    let cartList = $("#cart-list");
+    var cartList = $("#cart-list");
 
     // Clear empty message in cart list
     if (cart.length === 0) {
@@ -214,8 +213,8 @@ function addCartEvent(event) {
     }
 
     // Get activity that was clicked
-    let index = $(this).attr("data-index");
-    let activity = gplacesResults[index];
+    var index = $(this).attr("data-index");
+    var activity = searchResults[index];
 
     // Check if activity is already in cart, if not then add it to the cart array
     if (cart.includes(activity)) {
@@ -230,19 +229,17 @@ function addCartEvent(event) {
 }
 
 /**
- * TODO
+ * Removes the specified activity from the cart
  */
 function removeActivity(event) {
     event.preventDefault();
 
-    console.log("Remove clicked");
-
     // Get activity that to remove from the cart
-    let resIndex = $(this).attr("data-index");
-    let activity = gplacesResults[resIndex];
+    var resIndex = $(this).attr("data-index");
+    var activity = searchResults[resIndex];
 
     // Get index of the activity in the cart
-    let cartIndex = cart.indexOf(activity);
+    var cartIndex = cart.indexOf(activity);
 
     // Remove from cart array
     cart.splice(cartIndex, 1);
@@ -254,7 +251,7 @@ function removeActivity(event) {
     if (cart.length === 0) {
         // Display empty message
         $("#cart-list").append(
-            $("<p>").addClass("center-align").text("Empty")
+            $("<li>").addClass("center-align").text("Empty")
         );
     } else {
         // Repopulate cart
@@ -265,20 +262,20 @@ function removeActivity(event) {
 }
 
 /**
- * TODO
+ * Adds a new activity to the cart list element
  */
 function appendCartActivity(index, activity) {
     // Create text element
-    let text = $("<span>").text(activity.name);
+    var text = $("<span>").text(activity.name);
 
     // Create clear button
-    let btn = $("<a>")
+    var btn = $("<a>")
         .addClass("secondary-content btn-flat clear-btn red-text")
         .attr("data-index", index)
         .html('<i class="material-icons">clear</i>');
 
     // Create list item and append text and clear button
-    let li = $("<li>")
+    var li = $("<li>")
         .addClass("collection-item")
         .attr("data-index", index)
         .append(text)
@@ -286,4 +283,46 @@ function appendCartActivity(index, activity) {
 
     // Append list item to the cart list
     $("#cart-list").append(li);
+}
+
+/**
+ * Creates an itinerary and renders it to the page
+ */
+function generateItinerary() {
+    // Obtain reference to the main content area
+    var main = $("main");
+
+    // Clear main content area
+    main.emtpy();
+
+    var mainDiv = $("<div>").addClass("col s12 black-text");
+
+    // Loop through cart and add activity to the main div
+    for (var activity of cart) {
+        var card = $("<div>").addClass("card horizontal");
+
+        var img = $('<img class="materialboxed" width="150" src="' + activity.icon + '">');
+
+        var cardImg = $("<div>").addClass("card-image").append(img);
+
+        var cardTitle = $("<span>").addClass(card-title).text(activity.name);
+
+        var cardAddress = $("<p>").text("Address: " + activity.address);
+
+        var cardRating = $("<p>").text("Rating: ") + activity.rating;
+
+        var cardContent = $("<div>").addClass("card-content");
+
+        cardContent.append(cardTitle, cardAddress, cardRating);
+
+        var cardStack = $("<div>").addClass("card-stacked");
+
+        cardStack.append(cardContent);
+
+        card.append(cardImg, cardStack);
+
+        mainDiv.append(card);
+    }
+
+    main.append(mainDiv);
 }
