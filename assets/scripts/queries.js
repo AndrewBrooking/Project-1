@@ -28,7 +28,6 @@ function getLatLng (zipcode) {
 //global variable 
 var gSearchResultsARR = [];
 
-
 /**
  * Convert input from miles to meters
  */
@@ -47,6 +46,8 @@ function radiusConverter(distanceMi) {
  *  Creates a request for Google Places API call 
  */
 function gPlacesSearch(lat, lng, types, radius) {
+    gplacesResults = [];
+
     var place = new google.maps.LatLng(lat, lng);
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -62,6 +63,7 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //creates a google places service object to search
     var service = new google.maps.places.PlacesService(map);
+
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
         if (status !== "OK") {
