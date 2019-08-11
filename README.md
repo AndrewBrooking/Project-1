@@ -1,6 +1,25 @@
 # Get Out
+  
+### Description
 A date/event planning application to aggregate nearby options for activities.
-
+  
+### Purpose
+Make finding an activity for a date or group outing easier by searching for many different types of activities on one site.
+  
+### Results
+We feel as though we have delivered a functional product with minimal bugs and a good design.
+  
+### Team Effort
+The work was divided based on amount of time required to complete the task. Our individual breakdowns can be viewed in the main project board.
+  
+### Challenges
+One of the toughest challenges for this project was finding good APIs to gather information from. Luckily, we were able to use the Google Places API to fulfill most of the queries. There were frequent issues with merge conflicts that could have been avoided if we divided up the functions into more files and had better division of labor.
+  
+### Improvements
+  * Fix the cart to the same spot on the screen even when scrolling
+  * Fine tune the spacing and sizing of some elements
+  * Add more filters and more APIs to search
+  
 # Authors
 * Tierra Farris
 * Bladimir Orellana
