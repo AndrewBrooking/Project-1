@@ -58,6 +58,12 @@ function multiTypeSearch() {
     }
 }
 
+// GPlaces search results
+let gplacesResults = [];
+
+// Holds all activities in the cart
+let cart = [];
+
 //############################## App Logic #############################################
 
 /**
@@ -79,9 +85,10 @@ $(document).ready(function () {
     // Handle go button click events
     $(document).on("click", "#go-btn", goEvent);
 
-    // //
-    // $(document).on("change", "#zip-input", zipEvent);
+    // Handle add to cart click events
+    $(document).on("click", ".add-cart", addCartEvent);
 
+    $(document).on("click", ".clear-btn", removeActivity);
 });
 
 //##################################### APP Functions #################################################
@@ -162,6 +169,7 @@ function searchEvent(event) {
     //     M.Datepicker.getInstance($("#date-input-mobile")).toString();
     let date = M.Datepicker.getInstance($("#date-input")).date;
     dateString = moment(date).format('YYYY-MM-DD');
+
     //converts zip to latitude and longitude for apis
     getLatLng(zip).then(function () {
         //clears old results and performs google places api call and updates dom
@@ -169,16 +177,113 @@ function searchEvent(event) {
         multiTypeSearch();
         console.log(searchResults);
     })
-
-    
-    // TODO
 }
 
 /**
- * 
+ * Generates the itinerary from the selected activities
  */
 function goEvent(event) {
     event.preventDefault();
 
-    // TODO
+    // Check that cart is not empty
+    if (!cart.length > 0) {
+        return;
+    }
+
+    let main = $("main");
+
+    // Clear main content area
+    main.emtpy();
+
+    // Generate a new intinerary
+    generateItinerary();
+}
+
+/**
+ * TODO
+ */
+function addCartEvent(event) {
+    event.preventDefault();
+
+    // Obtain reference to cart
+    let cartList = $("#cart-list");
+
+    // Clear empty message in cart list
+    if (cart.length === 0) {
+        cartList.empty();
+    }
+
+    // Get activity that was clicked
+    let index = $(this).attr("data-index");
+    let activity = gplacesResults[index];
+
+    // Check if activity is already in cart, if not then add it to the cart array
+    if (cart.includes(activity)) {
+        return;
+    }
+
+    // Add activity to cart array
+    cart.push(activity);
+
+    // Add activity to cart list
+    appendCartActivity(index, activity);
+}
+
+/**
+ * TODO
+ */
+function removeActivity(event) {
+    event.preventDefault();
+
+    console.log("Remove clicked");
+
+    // Get activity that to remove from the cart
+    let resIndex = $(this).attr("data-index");
+    let activity = gplacesResults[resIndex];
+
+    // Get index of the activity in the cart
+    let cartIndex = cart.indexOf(activity);
+
+    // Remove from cart array
+    cart.splice(cartIndex, 1);
+
+    // Clear cart list
+    $("#cart-list").empty();
+
+    // Check if cart is empty
+    if (cart.length === 0) {
+        // Display empty message
+        $("#cart-list").append(
+            $("<p>").addClass("center-align").text("Empty")
+        );
+    } else {
+        // Repopulate cart
+        for (var i = 0; i < cart.length; i++) {
+            appendCartActivity(i, cart[i]);
+        }
+    }
+}
+
+/**
+ * TODO
+ */
+function appendCartActivity(index, activity) {
+    // Create text element
+    let text = $("<span>").text(activity.name);
+
+    // Create clear button
+    let btn = $("<a>")
+        .addClass("secondary-content btn-flat clear-btn red-text")
+        .attr("data-index", index)
+        .html('<i class="material-icons">clear</i>');
+
+    // Create list item and append text and clear button
+    let li = $("<li>")
+        .addClass("collection-item")
+        .attr("data-index", index)
+        .append(text)
+        .append(btn);
+
+    // Append list item to the cart list
+    $("#cart-list").append(li);
 }

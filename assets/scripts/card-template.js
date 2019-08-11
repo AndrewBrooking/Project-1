@@ -1,10 +1,11 @@
 // Call cardTemplate function
 // GENERATE CARD TEMPLATE FUNCTION
-function cardTemplate(gSearchResultOBJ) {
+function cardTemplate(index) {
 
-        
+        var gSearchResultOBJ = gplacesResults[index];
+
         var template = $("<div>");
-        template.addClass("col s12 m7 black-text");
+        template.addClass("col s12 black-text");
         template.html(`
     
     <div class="card horizontal">
@@ -38,12 +39,10 @@ function cardTemplate(gSearchResultOBJ) {
                   <!-- Right side links and opening and closing time-->
                   <div class="col s12 m4  center-align l4 info-boxes">
                           <div class="row">
-                                  <div class="col s12 info" id="` + gSearchResultOBJ.id + `><p class="open-time">` +
-
-
-                +`</p></div>
+                                  <div class="col s12 info" id="` + gSearchResultOBJ.id + `><p class="open-time"></p></div>
                                   <div class="col s12 info">Visit site</div>
                                   <div class="col s12 info"></div>
+                                  <a class="btn add-cart" data-index="` + index + `">Add to Cart</a>
                                </div>
                      </div>
                </div>
@@ -53,7 +52,8 @@ function cardTemplate(gSearchResultOBJ) {
         <button class=" btn activator">Details</button>
       </div>
     </div>
-    <!-- Card Revel  -->
+
+    <!-- Card Reveal -->
     <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">Images<i class="material-icons right">close</i></span>
           <div class="row">
@@ -76,6 +76,6 @@ function cardTemplate(gSearchResultOBJ) {
         </div>
   </div>
     
-    `)
-        $("#result-container").append(template)
+    `);
+        $("#result-container").append(template);
 }
