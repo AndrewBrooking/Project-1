@@ -68,43 +68,56 @@ function gPlacesSearch(lat, lng, types, radius) {
             console.log(`Error: ${status}`);
             return;
         }
+        else {
+            console.log(results);
+            var name;
+            var location;
+            var type;
+            var icon;
+            var rating;
+            var placeId;
+            var address;
+            var gSearchResultOBJ;
 
-        var name;
-        var location;
-        var type;
-        var icon;
-        var rating;
-        var placeId;
-        var address;
-        var gSearchResultOBJ;
+            for (var i = 0; i < results.length; i++) {
+                currentResult = results[i];
 
-        for (var i = 0; i < results.length; i++) {
-            currentResult = results[i];
+                name = currentResult.name;
+                location = currentResult.vicinity;
+                type = currentResult.types;
+                icon = currentResult.icon;
+                placeId = currentResult.id;
+                address = currentResult.vicinity;
+                if (currentResult.rating === undefined){
+                    rating = "MA";
+                } else {
+                    rating = currentResult.rating;
+                }
+                if (currentResult.photos) {
+                    photo = currentResult.photos[0].getUrl();
+                } else {
+                    photo = "./assets/images/funphoto.jpg"
+                }
+                
 
-            name = currentResult.name;
-            location = currentResult.vicinity;
-            type = currentResult.types;
-            icon = currentResult.icon;
-            rating = currentResult.rating;
-            placeId = currentResult.id;
-            address = currentResult.vicinity;
-
-            gSearchResultOBJ = {
-                name: name,
-                location: location,
-                type: type,
-                icon: icon,
-                rating: rating,
-                id: placeId,
-                address: address
-            }
-            if (gSearchResultOBJ.type.includes("lodging")) {
-                return;
-            }
-            else {
-                searchResults.push(gSearchResultOBJ);
-                cardTemplate(searchResults.length - 1);
-            }
+                gSearchResultOBJ = {
+                    name: name,
+                    location: location,
+                    type: type,
+                    icon: icon,
+                    rating: rating,
+                    id: placeId,
+                    address: address,
+                    photo: photo,
+                }
+                if (gSearchResultOBJ.type.includes("lodging")) {
+                    
+                }
+                else {
+                    searchResults.push(gSearchResultOBJ);
+                    cardTemplate(searchResults.length - 1);
+                }
+            };
         };
     });
 };
@@ -140,7 +153,7 @@ function getUpcomingMusic(url) {
     }).then(function (data) {
 
         var result = data.resultsPage.results.event;
-
+        console.log(result);
         for (var i = 0; i < 10; i++) {
             var currentResult = result[i];
             var name = currentResult.displayName;
@@ -148,14 +161,20 @@ function getUpcomingMusic(url) {
             var time = currentResult.start.date + "at: " + currentResult.start.time;
             var info = currentResult.uri;
             var venue = currentResult.venue.displayName;
+            var rating = "NA";
+            var placeId = "NA";
+            
 
             var songkickResultsOBJ = {
                 name: name,
                 type: type,
-                venue: venue,
+                address: `<a href=${info}>${venue}</a>`,
                 info: info,
                 time: time,
                 icon: "./assets/images/ticket-concert-512.png",
+                photo: "./assets/images/concert-pic.jpg",
+                id: placeId,
+                rating: rating,
             }
             
             searchResults.push(songkickResultsOBJ);

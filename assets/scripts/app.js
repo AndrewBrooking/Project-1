@@ -87,7 +87,7 @@ $(document).ready(function () {
 
     //Handle reset button click events
     $(document).on("click", "#reset-btn", resetFilters);
-    
+
     // Handle add to cart click events
     $(document).on("click", ".add-cart", addCartEvent);
 
@@ -163,7 +163,8 @@ function rangeEvent(event) {
 
 function resetFilters() {
     $("input[type='checkbox']").prop("checked", true);
-   //TODO make range filter reset
+    typesArr = allTypes;
+    //TODO make range filter reset
 };
 /**
  * Performs the querying actions using filter settings
@@ -178,7 +179,7 @@ function searchEvent(event) {
 
     let date = M.Datepicker.getInstance($("#date-input")).date ||
         M.Datepicker.getInstance($("#date-input-mobile")).date;
-  
+
     dateString = moment(date).format('YYYY-MM-DD');
 
     //converts zip to latitude and longitude for apis
@@ -186,7 +187,7 @@ function searchEvent(event) {
         //clears old results and performs google places api call and updates dom
         $("#result-container").empty();
         multiTypeSearch();
-        console.log(searchResults);
+
     })
 }
 
@@ -308,7 +309,7 @@ function generateItinerary() {
     for (var activity of cart) {
         var card = $("<div>").addClass("card horizontal");
 
-        var img = $('<img class="materialboxed" width="150px" src="' + activity.icon + '">');
+        var img = $('<img class="materialboxed" style="max-width:150px" src="' + activity.icon + '">');
 
         var cardImg = $("<div>").addClass("card-image valign-wrapper center-align").append(img);
 
