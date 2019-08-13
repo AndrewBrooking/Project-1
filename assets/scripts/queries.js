@@ -1,13 +1,32 @@
 // #################################   API Info ##########################################
 
-//yelp
-// const yelpID = "8tbFFNcnX4YcPxbNA7DwBw"
-// const yelpApiKey = "231r7Ia-ZXGh5J9wW4MA3DBGzycWROrufJz0I3wD_H1uCf16dba1IkRfPGyCzOSc9Cs8IbCyVMJcVT7oA0efxI756ydSvCXUA6pLTFyaRrjR3OgJzETvz68qRxdKXXYx"
 
 // Songkick
 const songkickApiKey = "&apikey=OJjdV1C71cGFN7Nj";
 
+// ############################### Zipcode to LatLng API  ###############################
+//converts zipcode to latitude and longitude for apis
+function getLatLng (zipcode) {
+    var zipcodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+ zipcode +"&key=AIzaSyCBjqQBqpsTRLKM_9Y0bYVCWNQVQwrve6o"
+    var apiPromise = $.ajax({
+        url: zipcodeURL,
+        method: 'GET'
+    }).then(function (data) {
+        var geocodedZipObj = data.results[0].geometry.location;
+
+        searchAreaSongkick = `${geocodedZipObj.lat},${geocodedZipObj.lng}`
+        
+        searchAreaARR = [geocodedZipObj.lat, geocodedZipObj.lng];
+
+        return true;
+    });
+    return apiPromise;
+}
+
+
 // ############################### Google Places API Functions ###############################
+//global variable 
+var gSearchResultsARR = [];
 
 /**
  * Convert input from miles to meters
@@ -42,70 +61,75 @@ function gPlacesSearch(lat, lng, types, radius) {
 
     //creates a google places service object to search
     var service = new google.maps.places.PlacesService(map);
+
     //uses google places nearby search method to generate an API call and return a customized array of results
     service.nearbySearch(request, function (results, status) {
-        console.log(results)
-        // console.log(results[0].name, results[0].vicinity, results[0].opening_hours.isOpen())
-        var name;
-        var location;
-        var type;
-        var icon;
-        var rating;
-        var open;
-        var placeId;
-        var address;
-        var gSearchResultOBJ;
-        var gSearchResultsARR = [];
-
-        for (var i = 0; i < results.length; i++) {
-            currentResult = results[i];
-            console.log(results[i].name)
-            name = currentResult.name;
-            location = currentResult.vicinity;
-            type = currentResult.types;
-            icon = currentResult.icon;
-            rating = currentResult.rating;
-            open = currentResult.opening_hours.open_now;
-            placeId = currentResult.id;
-            address = currentResult.vicinity;
-
-            gSearchResultOBJ = {
-                name: name,
-                location: location,
-                type: type,
-                icon: icon,
-                rating: rating,
-                open: open,
-                id: placeId,
-                address: address
-            }
-
-
-
-            gSearchResultsARR.push(gSearchResultOBJ);
-
-            cardTemplate(gSearchResultOBJ);
-
+        if (status !== "OK") {
+            console.log(`Error: ${status}`);
+            return;
         }
-        // console.log(gSearchResultsARR);
-        return gSearchResultsARR;
+        else {
+            console.log(results);
+            var name;
+            var location;
+            var type;
+            var icon;
+            var rating;
+            var placeId;
+            var address;
+            var gSearchResultOBJ;
+
+            for (var i = 0; i < results.length; i++) {
+                currentResult = results[i];
+
+                name = currentResult.name;
+                location = currentResult.vicinity;
+                type = currentResult.types;
+                icon = currentResult.icon;
+                placeId = currentResult.id;
+                address = currentResult.vicinity;
+                if (currentResult.rating === undefined){
+                    rating = "MA";
+                } else {
+                    rating = currentResult.rating;
+                }
+                if (currentResult.photos) {
+                    photo = currentResult.photos[0].getUrl();
+                } else {
+                    photo = "./assets/images/funphoto.jpg"
+                }
+                
+
+                gSearchResultOBJ = {
+                    name: name,
+                    location: location,
+                    type: type,
+                    icon: icon,
+                    rating: rating,
+                    id: placeId,
+                    address: address,
+                    photo: photo,
+                }
+                if (gSearchResultOBJ.type.includes("lodging")) {
+                    
+                }
+                else {
+                    searchResults.push(gSearchResultOBJ);
+                    cardTemplate(searchResults.length - 1);
+                }
+            };
+        };
     });
 };
 
 //################################## Songkick API Functions ###################################
-
-//use zipcode to do location search and get metro id
-//get date from user
-//do upcoming events search and return search object for display
-
-var searchArea = "29.7604,-95.3698"; //needs to be a latlng generated from user inputted zipcode
-date = "2019-08-09"; //date in form YYYY-MM-DD
-var songkickResultsArr = [];
-let locSearchURL = "https://api.songkick.com/api/3.0/search/locations.json?" + songkickApiKey + "&location=geo:" + searchArea;
-musicSearch(locSearchURL);
+//global variables
+var searchAreaSongkick = ""; //string that is updated with latlng generated from user inputted zipcode
+dateString = moment().format('YYYY-MM-DD'); //date in form YYYY-MM-DD
 
 //function does an api call to get songkick metro id from latlng. then calls function to do upcoming events search
-function musicSearch(locationURL) {
+function musicSearch() {
+    var locationURL = "https://api.songkick.com/api/3.0/search/locations.json?" + songkickApiKey + "&location=geo:" + searchAreaSongkick;
 
     $.ajax({
         url: locationURL,
@@ -113,7 +137,7 @@ function musicSearch(locationURL) {
     }).then(function (data) {
         var metroID = data.resultsPage.results.location[0].metroArea.id;
 
-        let upcomingMusicURL = "https://api.songkick.com/api/3.0/metro_areas/" + metroID + "/calendar.json?&min_date=" + date + "&max_date=" + date + songkickApiKey;
+        var upcomingMusicURL = "https://api.songkick.com/api/3.0/metro_areas/" + metroID + "/calendar.json?&min_date=" + dateString + "&max_date=" + dateString + songkickApiKey;
 
         getUpcomingMusic(upcomingMusicURL);
 
@@ -127,27 +151,35 @@ function getUpcomingMusic(url) {
         url: url,
         method: 'GET'
     }).then(function (data) {
-        console.log(data);
+
         var result = data.resultsPage.results.event;
+        console.log(result);
+        for (var i = 0; i < 10; i++) {
+            var currentResult = result[i];
+            var name = currentResult.displayName;
+            var type = currentResult.type;
+            var time = currentResult.start.date + "at: " + currentResult.start.time;
+            var info = currentResult.uri;
+            var venue = currentResult.venue.displayName;
+            var rating = "NA";
+            var placeId = "NA";
+            
 
-        for (var i = 0; i < result.length; i++) {
-            let currentResult = result[i];
-            let name = currentResult.displayName;
-            let type = currentResult.type;
-            let time = currentResult.start.date + "at: " + currentResult.start.time;
-            let info = currentResult.uri;
-            let venue = currentResult.venue.displayName;
-
-            let songkickResultsOBJ = {
+            var songkickResultsOBJ = {
                 name: name,
                 type: type,
-                venue: venue,
+                address: `<a href=${info}>${venue}</a>`,
                 info: info,
                 time: time,
+                icon: "./assets/images/ticket-concert-512.png",
+                photo: "./assets/images/concert-pic.jpg",
+                id: placeId,
+                rating: rating,
             }
+            
+            searchResults.push(songkickResultsOBJ);
 
-            songkickResultsArr.push(songkickResultsOBJ);
+            cardTemplate(searchResults.length - 1);
         }
-        console.log(songkickResultsArr);
     });
 }
