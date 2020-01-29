@@ -2,6 +2,8 @@
   
 ### Description
 A date/event planning application to aggregate nearby options for activities.
+
+![alt text](https://github.com/AndrewBrooking/Project-1/blob/master/assets/images/get-out.PNG "Get Out")
   
 ### Purpose
 Make finding an activity for a date or group outing easier by searching for many different types of activities on one site.
